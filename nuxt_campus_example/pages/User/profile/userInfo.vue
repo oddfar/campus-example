@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import { updateUserProfile } from "@/api/user";
+import userInfoApi from "@/api/userInfo";
 import { getCodeImg, checkEmailUnique } from "@/api/login";
 
 import userEmail from "./userEmail";
@@ -92,13 +92,12 @@ export default {
       loading: false,
     };
   },
-  created() {
-  },
+  created() {},
   methods: {
     submit() {
       this.$refs["form"].validate((valid) => {
         if (valid) {
-          updateUserProfile(this.user).then((response) => {
+          userInfoApi.updateUserProfile(this.user).then((response) => {
             this.$modal.msgSuccess("修改成功");
           });
         }

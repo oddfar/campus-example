@@ -19,17 +19,19 @@
       >
         <el-row>
           <el-col :xs="24" :md="12" :style="{ height: '350px' }">
-            <vue-cropper
-              ref="cropper"
-              :img="options.img"
-              :info="true"
-              :autoCrop="options.autoCrop"
-              :autoCropWidth="options.autoCropWidth"
-              :autoCropHeight="options.autoCropHeight"
-              :fixedBox="options.fixedBox"
-              @realTime="realTime"
-              v-if="visible"
-            ></vue-cropper>
+            <client-only>
+              <VueCropper
+                ref="cropper"
+                :img="options.img"
+                :info="true"
+                :autoCrop="options.autoCrop"
+                :autoCropWidth="options.autoCropWidth"
+                :autoCropHeight="options.autoCropHeight"
+                :fixedBox="options.fixedBox"
+                @real-time="realTimeImg"
+                v-if="visible"
+              />
+            </client-only>
           </el-col>
           <el-col :xs="24" :md="12" :style="{ height: '350px' }">
             <div class="avatar-upload-preview">
@@ -92,7 +94,8 @@
 </template>
 
 <script>
-import { uploadAvatar } from "@/api/user";
+import userInfoApi from "@/api/userInfo";
+// const VueCropper = (resolve) => resolve(require("vue-cropper"));
 
 export default {
   props: {
@@ -100,6 +103,7 @@ export default {
       type: Object,
     },
   },
+  // components: { VueCropper },
   data() {
     return {
       // 是否显示弹出层
@@ -119,6 +123,8 @@ export default {
     };
   },
   created() {
+    if (process.client) {
+    }
     // this.options.img = this.handleCampusUrl(news.avatar);
   },
   watch: {
@@ -130,6 +136,7 @@ export default {
     // 编辑头像
     editCropper() {
       this.open = true;
+      this.visible = true;
     },
     // 打开弹出层结束时的回调
     modalOpened() {
@@ -169,7 +176,7 @@ export default {
       this.$refs.cropper.getCropBlob((data) => {
         let formData = new FormData();
         formData.append("avatarfile", data);
-        uploadAvatar(formData).then((response) => {
+        userInfoApi.uploadAvatar(formData).then((response) => {
           this.open = false;
           this.options.img = this.handleCampusUrl(response.imgUrl);
           // store.commit('SET_AVATAR', this.options.img);
@@ -179,7 +186,7 @@ export default {
       });
     },
     // 实时预览
-    realTime(data) {
+    realTimeImg(data) {
       this.previews = data;
     },
     // 关闭窗口

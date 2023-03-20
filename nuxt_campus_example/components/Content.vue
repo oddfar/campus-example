@@ -100,7 +100,6 @@ export default {
       if (this.loveContentIds.indexOf(contentId) == -1) {
         this.zanBoolean = false;
       } else {
-        console.log("点赞" + this.loveContentIds + "--" + contentId);
         this.zanBoolean = true;
       }
     },

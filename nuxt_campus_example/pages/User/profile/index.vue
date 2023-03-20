@@ -23,10 +23,10 @@
 </template>
 
 <script>
-import userAvatar from "@/components/profile/userAvatar";
-import userInfo from "@/components/profile/userInfo";
-import resetPwd from "@/components/profile/resetPwd";
-import { getUserProfile } from "@/api/user";
+import userAvatar from "./userAvatar";
+import userInfo from "./userInfo";
+import resetPwd from "./resetPwd";
+import userInfoApi from "@/api/userInfo";
 
 export default {
   name: "Profile",
@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     getUser() {
-      getUserProfile().then((response) => {
+      userInfoApi.getUserProfile().then((response) => {
         this.user = response.data;
       });
     },

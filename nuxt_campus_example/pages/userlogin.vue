@@ -102,7 +102,7 @@
 </template>
 <script>
 import cookie from "js-cookie";
-import userInfoApi from "@/api/userInfo.js";
+import userInfoApi from "@/api/userInfo";
 import { getCodeImg, login } from "@/api/login";
 import { getToken, setToken, removeToken } from "@/utils/auth";
 
