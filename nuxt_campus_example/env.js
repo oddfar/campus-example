@@ -5,7 +5,7 @@ module.exports = {
     },
     prod: {
         DESCN:'线上环境',
-	    API_BASE_URL:'https://api-campus.oddfar.com',
+	    API_BASE_URL:'https://v1.campus.oddfar.com',
     }
 }
 

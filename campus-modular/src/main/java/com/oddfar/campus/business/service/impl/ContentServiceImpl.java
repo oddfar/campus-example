@@ -132,8 +132,7 @@ public class ContentServiceImpl extends ServiceImpl<ContentMapper, ContentEntity
         contentEntity.setUserId(SecurityUtils.getUserId());
         if (sendContentVo.getFileList() != null && sendContentVo.getFileList().size() > 0) {
             contentEntity.setFileCount(sendContentVo.getFileList().size());
-            //保存数据库
-            fileService.updateContentFile(sendContentVo.getFileList(), contentEntity.getContentId());
+
         } else {
             contentEntity.setFileCount(0);
             contentEntity.setType(0);
@@ -141,8 +140,11 @@ public class ContentServiceImpl extends ServiceImpl<ContentMapper, ContentEntity
 
         contentEntity.setContentId(IdWorker.getId());
         contentEntity.setStatus(0);
+        int insert = contentMapper.insert(contentEntity);
+        //更新文件数据库
+        fileService.updateContentFile(sendContentVo.getFileList(), contentEntity.getContentId());
 
-        return contentMapper.insert(contentEntity);
+        return insert;
     }
 
     @Override

@@ -98,8 +98,10 @@
 <script>
 //引入接口定义的js文件
 import operateApi from "@/api/operate";
+import userInfoApi from "@/api/userInfo";
 import touristApi from "@/api/tourist";
 import { getToken } from "@/utils/auth";
+
 export default {
   data() {
     return {
@@ -148,6 +150,7 @@ export default {
       this.$router.push({ path: "/userlogin" });
     }
     this.upload.headers["Authorization"] = "Bearer " + getToken();
+    this.haveMail();
   },
   mounted() {
     this.$nextTick(function () {
@@ -159,7 +162,25 @@ export default {
 
   methods: {
     //初始化数据
-    init() {},
+    haveMail() {
+      userInfoApi
+        .haveMail()
+        .then((response) => {})
+        .catch((response) => {
+          var count = 3; //赋值多少秒
+          var times = setInterval(() => {
+            count--; //递减
+            if (count <= 0) {
+              clearInterval(times);
+              this.$router.push({ path: "/user/profile" });
+            } else {
+              this.$message.warning(
+                "将再 " + count + " 秒后跳转到绑定邮箱页面"
+              );
+            }
+          }, 1000); //1000毫秒后执行
+        });
+    },
     //选择图片
     selectPicture() {
       //   this.$refs.uploadBtn.$el.click();

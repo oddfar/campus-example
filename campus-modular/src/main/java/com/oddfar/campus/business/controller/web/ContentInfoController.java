@@ -54,7 +54,12 @@ public class ContentInfoController {
                 page = contentService.hotPage();
                 break;
             default:
-                page = contentService.newestPage();
+                ContentEntity contentEntity = new ContentEntity();
+                contentEntity.setCategoryId(Long.valueOf(meta));
+                contentEntity.setStatus(1);
+                //开始分页
+                PageUtils.startPage(5);
+                page = contentService.page(contentEntity);
                 break;
         }
 
@@ -138,7 +143,7 @@ public class ContentInfoController {
 //    }
 
     /**
-     * 发表信息墙
+     * 发布信息墙
      */
     @PreAuthorize("@ss.resourceAuth()")
     @PostMapping(value = "/sendContent", name = "发表信息墙")
@@ -151,7 +156,7 @@ public class ContentInfoController {
      * 删除校园墙内容
      */
     @PreAuthorize("@ss.resourceAuth()")
-    @DeleteMapping(value = "/delContent/{contentId}",name = "删除自己的校园墙")
+    @DeleteMapping(value = "/delContent/{contentId}", name = "删除自己的校园墙")
     public R delContent(@PathVariable Long contentId) {
         contentService.deleteOwnContent(contentId);
         return R.ok();
@@ -161,7 +166,7 @@ public class ContentInfoController {
      * 查看自己的信息墙
      */
     @PreAuthorize("@ss.resourceAuth()")
-    @PostMapping(value = "/ownContents",name = "查看自己的单个信息墙")
+    @PostMapping(value = "/ownContents", name = "查看自己的单个信息墙")
     public R ownContents() {
         ContentEntity contentEntity = new ContentEntity();
         contentEntity.setUserId(SecurityUtils.getUserId());

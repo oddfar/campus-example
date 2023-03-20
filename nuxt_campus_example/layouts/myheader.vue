@@ -67,7 +67,7 @@
                   :size="35"
                   :src="handleCampusUrl(uImages)"
                 ></el-avatar>
-                  <i class="el-icon-caret-bottom" />
+                <i class="el-icon-caret-bottom" />
               </span>
               <el-dropdown-menu class="user-name-wrapper" slot="dropdown">
                 <span @click="profile()">
@@ -214,6 +214,7 @@
 <script>
 import cookie from "js-cookie";
 import apiUserInfo from "@/api/userInfo";
+import { logout } from "@/api/login";
 import { getToken, setToken, removeToken } from "@/utils/auth";
 // import Vue from "vue";
 export default {
@@ -250,7 +251,7 @@ export default {
     },
     // 退出登录
     exit() {
-      apiUserInfo.logout(this.ruleForm).then((response) => {
+      logout(this.ruleForm).then((response) => {
         removeToken();
       });
       window.location.reload();

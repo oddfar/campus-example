@@ -33,7 +33,6 @@
               placeholder="密码"
               @keyup.enter.native="handleLogin"
             >
-            
               <svg-icon
                 slot="prefix"
                 icon-class="password"
@@ -67,7 +66,14 @@
             >
               <el-link type="danger">忘记密码？</el-link>
             </router-link>
-           
+
+            <span
+              style="float: right"
+              class="router-link-active"
+              @click="openWxamp"
+            >
+              <el-link type="danger">使用微信登录</el-link>
+            </span>
           </el-form-item>
 
           <el-form-item style="width: 100%">
@@ -97,7 +103,7 @@
 <script>
 import cookie from "js-cookie";
 import userInfoApi from "@/api/userInfo.js";
-import { getCodeImg } from "@/api/login";
+import { getCodeImg, login } from "@/api/login";
 import { getToken, setToken, removeToken } from "@/utils/auth";
 
 export default {
@@ -149,14 +155,24 @@ export default {
         }
       });
     },
+    //打开微信小程序二维码登录
+    openWxamp() {
+      
+      var flag = window.open("/wxamp", "Campus", "width=400,height=700,left=30,top=10");
+      var loop = setInterval(function () {
+        if (flag.closed) {
+          clearInterval(loop);
+          window.location.reload();
+        }
+      }, 3);
+    },
     // 用户登录
     handleLogin() {
       this.$refs.loginForm.validate((valid) => {
         if (valid) {
           this.loading = true;
           //登录接口
-          userInfoApi
-            .login(this.loginForm)
+          login(this.loginForm)
             .then((response) => {
               // 登录成功 设置cookie
               this.setCookies(response);
@@ -176,7 +192,6 @@ export default {
     //设置COOKIE
     setCookies(res) {
       setToken(res.token);
-      cookie.set("username", this.loginForm.username, { expires: 30 });
     },
   },
 };

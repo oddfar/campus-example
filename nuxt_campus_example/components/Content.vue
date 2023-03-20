@@ -73,6 +73,7 @@ export default {
       //是否点赞
       zanBoolean: false,
       contentWidth: "width:605px;",
+      contentId: null,
     };
   },
   //生命周期 - 创建完成（可以访问当前this实例）
@@ -82,6 +83,13 @@ export default {
       this.contentWidth = "";
     }
     this.isZan(this.contentObj.contentId);
+    // this.contentId = this.contentObj.contentId;
+  },
+  watch: {
+    //监听值变化：
+    // contentId: function () {
+    //   this.isZan(this.contentId);
+    // },
   },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {},
@@ -92,6 +100,7 @@ export default {
       if (this.loveContentIds.indexOf(contentId) == -1) {
         this.zanBoolean = false;
       } else {
+        console.log("点赞" + this.loveContentIds + "--" + contentId);
         this.zanBoolean = true;
       }
     },

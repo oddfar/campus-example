@@ -77,10 +77,7 @@
             </div>
 
             <div
-              class="
-                comment-info
-                woo-box-flex woo-box-alignCenter woo-box-justifyBetween
-              "
+              class="comment-info woo-box-flex woo-box-alignCenter woo-box-justifyBetween"
             >
               <div>
                 <span> {{ handelTimeFormat(item.createTime) }} </span>
@@ -89,10 +86,7 @@
               <!-- 删除 回复 -->
               <div class="woo-box-flex" style="margin-right: 20px">
                 <div
-                  class="
-                    comment-iconbed
-                    woo-box-flex woo-box-alignCenter woo-box-justifyCenter
-                  "
+                  class="comment-iconbed woo-box-flex woo-box-alignCenter woo-box-justifyCenter"
                 >
                   <svg-icon
                     class="comment-tool-iconbed"
@@ -102,10 +96,7 @@
                 </div>
                 <!-- 添加子评论 -->
                 <div
-                  class="
-                    comment-iconbed
-                    woo-box-flex woo-box-alignCenter woo-box-justifyCenter
-                  "
+                  class="comment-iconbed woo-box-flex woo-box-alignCenter woo-box-justifyCenter"
                   @click="openCommentChild(item.commentId)"
                 >
                   <svg-icon class="comment-tool-iconbed" icon-class="comment" />
@@ -132,7 +123,7 @@
             <!-- 更多评论的数量 -->
             <div
               class="comment-more-item"
-              v-if="item.childrenCount != 0"
+              v-if="item.childrenCount > 1"
               @click="showChildren(item)"
             >
               <div style="color: #eb7350; text-align: left">
@@ -140,7 +131,7 @@
                   >共{{
                     item.children == undefined
                       ? item.childrenCount
-                      : item.childrenCount--
+                      : item.childrenCount
                   }}条回复</span
                 >
               </div>
@@ -159,10 +150,7 @@
       </div>
       <nuxt-link :to="'/c/' + contentObj.contentId">
         <div
-          class="
-            woo-box-flex woo-box-alignCenter woo-box-justifyCenter
-            CommentFeed_more
-          "
+          class="woo-box-flex woo-box-alignCenter woo-box-justifyCenter CommentFeed_more"
         >
           <div>查看全部{{ commentTotal }}条评论</div>
           <i class="woo-font woo-font--angleRight"></i>

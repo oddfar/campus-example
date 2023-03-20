@@ -1,9 +1,9 @@
 # 项目相关配置
 campus:
   # 名称
-  name: oddfar-campus
+  name: oddfar-campus-example
   # 版本
-  version: 1.1.0
+  version: 1.1.1
 
 server:
   port: 8160
@@ -12,6 +12,8 @@ server:
 spring:
   application:
     name: oddfar
+  profiles:
+    active: dev
   #数据源配置
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -42,8 +44,8 @@ spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
-#    # 对象字段为null不显示
-#    default-property-inclusion: non_null
+  #    # 对象字段为null不显示
+  #    default-property-inclusion: non_null
 
   # 资源信息
   messages:

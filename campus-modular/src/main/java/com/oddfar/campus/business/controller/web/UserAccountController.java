@@ -4,17 +4,16 @@ import com.oddfar.campus.business.core.api.MailServiceApi;
 import com.oddfar.campus.common.annotation.Anonymous;
 import com.oddfar.campus.common.annotation.ApiResource;
 import com.oddfar.campus.common.domain.R;
+import com.oddfar.campus.common.domain.entity.SysUserEntity;
 import com.oddfar.campus.common.domain.model.LoginUser;
 import com.oddfar.campus.common.domain.model.RegisterBody;
 import com.oddfar.campus.common.enums.ResBizTypeEnum;
 import com.oddfar.campus.common.utils.SecurityUtils;
+import com.oddfar.campus.common.utils.StringUtils;
 import com.oddfar.campus.framework.service.SysRoleService;
 import com.oddfar.campus.framework.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * 用户账户操作api
@@ -33,6 +32,21 @@ public class UserAccountController {
     private SysRoleService roleService;
     @Autowired
     private SysUserService userService;
+
+    /**
+     * 判断有没有绑定邮箱
+     *
+     * @return
+     */
+    @GetMapping("/haveMail")
+    public R haveMail() {
+        SysUserEntity user = SecurityUtils.getLoginUser().getUser();
+        if (StringUtils.isEmpty(user.getEmail())) {
+            return R.error("未绑定邮箱,请先绑定邮箱");
+        } else {
+            return R.ok();
+        }
+    }
 
     /**
      * 绑定/更换邮件

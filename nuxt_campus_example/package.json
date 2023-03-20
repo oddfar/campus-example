@@ -20,7 +20,7 @@
     "nuxt": "^2.15.8",
     "video.js": "^7.17.0",
     "vue": "^2.6.14",
-    "vue-cropper": "^0.5.8",
+    "vue-cropper": "^0.5.10",
     "vue-server-renderer": "^2.6.14",
     "vue-template-compiler": "^2.6.14",
     "webpack": "^4.46.0"

@@ -18,7 +18,7 @@
     </sql>
     <update id="updateContentFile">
         UPDATE campus_file
-        SET content_id=#{contentId}
+        SET content_id = #{contentId}
         WHERE file_id in
         <foreach item="fileId" collection="fileIds" open="(" separator="," close=")">
             #{fileId}

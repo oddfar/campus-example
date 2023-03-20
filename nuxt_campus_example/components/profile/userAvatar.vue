@@ -19,7 +19,7 @@
       >
         <el-row>
           <el-col :xs="24" :md="12" :style="{ height: '350px' }">
-            <VueCropper
+            <vue-cropper
               ref="cropper"
               :img="options.img"
               :info="true"
@@ -29,7 +29,7 @@
               :fixedBox="options.fixedBox"
               @realTime="realTime"
               v-if="visible"
-            />
+            ></vue-cropper>
           </el-col>
           <el-col :xs="24" :md="12" :style="{ height: '350px' }">
             <div class="avatar-upload-preview">

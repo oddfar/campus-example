@@ -113,7 +113,12 @@ public class CampusFileServiceImpl extends ServiceImpl<CampusFileMapper, CampusF
 
     @Override
     public int updateContentFile(List<Long> fileIds, Long contentId) {
-        return campusFileMapper.updateContentFile(fileIds, contentId);
+        if (fileIds != null && fileIds.size() > 0) {
+            return campusFileMapper.updateContentFile(fileIds, contentId);
+        }else {
+            return 0;
+        }
+
     }
 
     @Override

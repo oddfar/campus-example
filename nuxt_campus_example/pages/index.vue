@@ -84,21 +84,9 @@ export default {
     this.contentVo.pageNum = 1;
     // this.contentVo.categoryId = 0;
 
-    if (getToken() !== undefined) {
-      if (this.$route.query.types == "cgs") {
-        this.oppen(cookie.get("userName"));
-      }
-    }
   },
   methods: {
-    // 登录成功
-    oppen(value) {
-      const h = this.$createElement;
-      this.$notify({
-        title: "WelCome",
-        message: h("i", { style: "color: teal" }, "欢迎回来，" + value + "!"),
-      });
-    },
+
     //点击菜单后（子组件传递数据）
     selectCatrgory(data) {
       this.contentVo.categoryId = data;

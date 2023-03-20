@@ -1,0 +1,19 @@
+spring:
+  #数据源配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/campus_example?characterEncoding=utf-8&useSSL=true&serverTimezone=GMT%2B8
+    username: root
+    password: 13d7d2743cb092b1
+  #redis配置
+  redis:
+    host: localhost
+    port: 16379
+    password: 123456
+    database: 0
+    timeout: 1800000
+
+# Swagger配置
+swagger:
+  # 是否开启swagger
+  enabled: false

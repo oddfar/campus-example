@@ -17,6 +17,7 @@ import com.oddfar.campus.common.utils.StringUtils;
 import com.oddfar.campus.framework.api.mail.MailSendContext;
 import com.oddfar.campus.framework.api.sysconfig.ConfigContext;
 import com.oddfar.campus.framework.service.SysUserService;
+import com.oddfar.campus.framework.web.service.SysPermissionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.expression.ExpressionParser;
 import org.springframework.expression.common.TemplateParserContext;
@@ -38,6 +39,8 @@ public class MailServiceImpl implements MailServiceApi {
     private SysUserService userService;
     @Autowired
     private RedisCache redisCache;
+    @Autowired
+    private SysPermissionService permissionService;
 
     @Override
     public void bindMail(RegisterBody registerBody) {
@@ -96,7 +99,9 @@ public class MailServiceImpl implements MailServiceApi {
             //验证成功后给用户添加角色
             Set<String> roleSet = new HashSet<>();
             roleSet.add("campus:common");
-            userService.insertUserAuth(userEntity.getUserId(),roleSet);
+            userService.insertUserAuth(userEntity.getUserId(), roleSet);
+            //更新redis缓存
+            permissionService.resetUserRoleAuthCache(userEntity.getUserId());
             return true;
         } else {
             return false;

@@ -18,7 +18,7 @@ public interface MailServiceApi {
     boolean checkEmailCode(String email);
 
     /**
-     * 验证url邮箱uuid
+     * 验证url邮箱uuid，并绑定角色权限
      *
      * @param uuid
      * @return

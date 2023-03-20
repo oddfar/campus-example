@@ -85,10 +85,7 @@ service.interceptors.response.use(res => {
             }
             ).then(() => {
                 isRelogin.show = false;
-                this.$router.push("/userlogin");
-                //   store.dispatch('LogOut').then(() => {
-                //     location.href = '/index';
-                //   })
+                window.document.location = "/userlogin"
             }).catch(() => {
                 isRelogin.show = false;
             });
