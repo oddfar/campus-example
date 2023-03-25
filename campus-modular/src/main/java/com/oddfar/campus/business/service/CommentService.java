@@ -5,6 +5,8 @@ import com.oddfar.campus.business.domain.entity.CommentEntity;
 import com.oddfar.campus.business.domain.vo.CommentVo;
 import com.oddfar.campus.common.domain.PageResult;
 
+import java.util.List;
+
 
 public interface CommentService extends IService<CommentEntity> {
 
@@ -29,6 +31,12 @@ public interface CommentService extends IService<CommentEntity> {
      * @return
      */
     PageResult<CommentVo> selectOneLevelChild(CommentEntity comment);
+
+    /**
+     * 查询自己发布或回复的评论列表
+     * @return
+     */
+    List<CommentVo> selectOwnComment();
 
     /**
      * 获取信息墙的评论数量

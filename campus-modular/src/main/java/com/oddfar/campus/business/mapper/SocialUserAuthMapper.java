@@ -14,6 +14,13 @@ public interface SocialUserAuthMapper {
     Long getUserIdByWxamp(String openid);
 
     /**
+     * 根据uuid获取社会话用户表id
+     * @param uuid
+     * @return
+     */
+    Long getSocialUserId(String uuid);
+
+    /**
      * 添加第三方登录的信息
      */
     void insertUserSocial(@Param("socialUserId") Long socialUserId, @Param("uuid") String uuid,

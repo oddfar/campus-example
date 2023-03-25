@@ -49,6 +49,13 @@ public interface CommentMapper extends BaseMapperX<CommentEntity> {
      * @return
      */
     List<CommentVo> getOneLevelChild(CommentEntity commentEntity);
+
+    /**
+     * 查询自己发布或回复的评论列表
+     * @return
+     */
+    List<CommentVo> selectOwnComment(@Param("userId") Long userId);
+
 }
 
 

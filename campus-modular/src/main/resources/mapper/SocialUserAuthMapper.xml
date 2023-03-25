@@ -23,4 +23,10 @@
           AND su.source = 'WXAMP'
 
     </select>
+
+    <select id="getSocialUserId" resultType="java.lang.Long">
+        SELECT social_user_id
+        FROM `social_user`
+        WHERE uuid = #{uuid}
+    </select>
 </mapper>

@@ -41,6 +41,13 @@ public interface ContentMapper extends BaseMapperX<ContentEntity> {
      * @return
      */
     List<ContentEntity> getSimpleHotContent();
+
+    /**
+     * 根据ContentId查询信息墙内容简单文本列表
+     * @param contentIdList
+     * @return
+     */
+    List<ContentEntity> getSimpleContentText(List<Long> contentIdList);
 }
 
 

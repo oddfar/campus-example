@@ -94,17 +94,18 @@
 
     <el-row :gutter="10" class="mb8">
       <el-col :span="1.5">
+        <!-- v-hasPermi="['campus:content:add']" -->
         <el-button
           type="primary"
           plain
           icon="el-icon-plus"
           size="mini"
           @click="handleAdd"
-          v-hasPermi="['campus:content:add']"
           >新增</el-button
         >
       </el-col>
       <el-col :span="1.5">
+        <!-- v-hasPermi="['campus:content:edit']" -->
         <el-button
           type="success"
           plain
@@ -112,7 +113,6 @@
           size="mini"
           :disabled="single"
           @click="handleUpdate"
-          v-hasPermi="['campus:content:edit']"
           >修改</el-button
         >
       </el-col>
@@ -124,19 +124,7 @@
           size="mini"
           :disabled="multiple"
           @click="handleDelete"
-          v-hasPermi="['campus:content:remove']"
           >删除</el-button
-        >
-      </el-col>
-      <el-col :span="1.5">
-        <el-button
-          type="warning"
-          plain
-          icon="el-icon-download"
-          size="mini"
-          @click="handleExport"
-          v-hasPermi="['campus:content:export']"
-          >导出</el-button
         >
       </el-col>
       <right-toolbar
@@ -196,7 +184,6 @@
             type="text"
             icon="el-icon-edit"
             @click="handleUpdate(scope.row)"
-            v-hasPermi="['campus:content:edit']"
             >修改</el-button
           >
           <el-button
@@ -204,7 +191,6 @@
             type="text"
             icon="el-icon-delete"
             @click="handleDelete(scope.row)"
-            v-hasPermi="['campus:content:remove']"
             >删除</el-button
           >
           <el-button
@@ -212,7 +198,6 @@
             type="text"
             icon="el-icon-view"
             @click="handleView(scope.row)"
-            v-hasPermi="['campus:content:query']"
             >详细</el-button
           >
         </template>
@@ -343,7 +328,10 @@
                 v-for="(item, key) in form.fileUrl"
                 :key="key"
               >
-                <el-link :underline="false" :href="handleUrl(item)" target="_blank"
+                <el-link
+                  :underline="false"
+                  :href="handleUrl(item)"
+                  target="_blank"
                   >点击跳转</el-link
                 >
               </div>

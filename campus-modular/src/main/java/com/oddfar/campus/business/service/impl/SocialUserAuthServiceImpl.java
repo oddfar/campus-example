@@ -20,4 +20,10 @@ public class SocialUserAuthServiceImpl implements SocialUserAuthService {
         socialUserAuthMapper.insertUserSocial(socialUserId, uuid, source);
         socialUserAuthMapper.insertUserSocialAuth(socialUserId, userId);
     }
+
+    @Override
+    public void insertUserSocialByOpenid(String openid, Long userId) {
+        Long socialUserId = socialUserAuthMapper.getSocialUserId(openid);
+        socialUserAuthMapper.insertUserSocialAuth(socialUserId, userId);
+    }
 }

@@ -2,15 +2,15 @@ package com.oddfar.campus.business.controller.web;
 
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.util.IdUtil;
+import com.oddfar.campus.business.domain.auth.WxMPLoginBody;
 import com.oddfar.campus.common.annotation.Anonymous;
 import com.oddfar.campus.common.constant.Constants;
 import com.oddfar.campus.common.core.RedisCache;
 import com.oddfar.campus.common.domain.R;
+import com.oddfar.campus.common.utils.StringUtils;
 import com.oddfar.campus.web.service.WeiXinAuthService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping
@@ -78,7 +78,7 @@ public class UserAuthLoginController {
     }
 
     /**
-     * 根据小程序登录
+     * 第四步：根据小程序登录
      *
      * @param uuid uuid
      * @return
@@ -94,4 +94,45 @@ public class UserAuthLoginController {
         return r;
     }
 
+    /**
+     * 小程序登录返回token
+     */
+    @GetMapping("/wxampLogin/{code}")
+    @Anonymous
+    public R loginByAmpCode(@PathVariable String code) {
+        R r = new R();
+        String token = weiXinAuthService.loginByAmpCode(code);
+        if (StringUtils.isEmpty(token)){
+            r.put(Constants.TOKEN, "no_account");
+        }else {
+            r.put(Constants.TOKEN, token);
+        }
+
+
+        return r;
+    }
+
+    /**
+     * 小程序登录绑定账号
+     */
+    @PostMapping("/wxampBind")
+    @Anonymous
+    public R wxampBind(@RequestBody WxMPLoginBody loginBody) {
+        R r = new R();
+        String token = weiXinAuthService.wxampBind(loginBody);
+        r.put(Constants.TOKEN, token);
+        return r;
+    }
+
+    /**
+     * 小程序注册账号
+     */
+    @PostMapping("/wxampRegister")
+    @Anonymous
+    public R wxampRegister(@RequestBody WxMPLoginBody loginBody) {
+        R r = new R();
+        String token = weiXinAuthService.wxampRegister(loginBody);
+        r.put(Constants.TOKEN, token);
+        return r;
+    }
 }

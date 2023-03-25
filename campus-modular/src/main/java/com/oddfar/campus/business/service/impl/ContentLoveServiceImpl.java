@@ -14,16 +14,16 @@ import com.oddfar.campus.common.exception.ServiceException;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 /**
-* @author 致远
-
-*/
+ * @author 致远
+ */
 @Service
 public class ContentLoveServiceImpl extends ServiceImpl<ContentLoveMapper, ContentLoveEntity>
-    implements ContentLoveService {
+        implements ContentLoveService {
 
     @Resource
     private ContentMapper contentMapper;
@@ -73,8 +73,13 @@ public class ContentLoveServiceImpl extends ServiceImpl<ContentLoveMapper, Conte
 
     @Override
     public List<Long> getLoveInfo(Long userId, List<ContentVo> contentVos) {
-        List<Long> contentIds = contentVos.stream().map(ContentVo::getContentId).collect(Collectors.toList());
-        return contentLoveMapper.getLoveList(userId, contentIds);
+        if (contentVos != null && contentVos.size() > 0) {
+            List<Long> contentIds = contentVos.stream().map(ContentVo::getContentId).collect(Collectors.toList());
+            return contentLoveMapper.getLoveList(userId, contentIds);
+        }else {
+            return new ArrayList<Long>();
+
+        }
     }
 
 }

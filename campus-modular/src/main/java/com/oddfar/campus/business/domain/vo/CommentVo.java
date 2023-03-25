@@ -2,6 +2,7 @@ package com.oddfar.campus.business.domain.vo;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.oddfar.campus.common.domain.PageParam;
 import lombok.Data;
 
@@ -90,8 +91,14 @@ public class CommentVo extends PageParam {
     private List<CommentVo> children;
 
     /**
+     * 信息墙简单内容
+     */
+    @TableField(exist = false)
+    private String contentText;
+
+    /**
      * 创建时间
      */
-//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 }

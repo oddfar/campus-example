@@ -3,6 +3,7 @@ package com.oddfar.campus.business.api.weixin;
 import cn.hutool.http.HttpResponse;
 import cn.hutool.http.HttpUtil;
 import com.alibaba.fastjson2.JSON;
+import com.oddfar.campus.business.core.expander.CampusConfigExpander;
 
 import java.util.Base64;
 import java.util.HashMap;
@@ -10,8 +11,8 @@ import java.util.Map;
 
 public class WeiXinApi {
 
-    private final static String APPID = "wx4957f5c650534e63";
-    private final static String SECRET = "aa10f14052b78c2a5c3fa973fb38daad";
+    public static String APPID = CampusConfigExpander.getWxMpAppid();
+    public static String SECRET = CampusConfigExpander.getWxMpSecret();
 
     public static String getAccessToken() {
         String url = "https://api.weixin.qq.com/cgi-bin/token";
@@ -20,7 +21,6 @@ public class WeiXinApi {
         map.put("appid", APPID);
         map.put("secret", SECRET);
         return HttpUtil.get(url, map);
-
     }
 
     /**

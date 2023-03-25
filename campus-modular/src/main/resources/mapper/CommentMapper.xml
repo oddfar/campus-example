@@ -66,6 +66,20 @@
         WHERE co.one_level_id=#{commentId} and co.parent_id!=0 and co.del_flag = '0'
         order by co.create_time DESC
     </select>
+    <select id="selectOwnComment" resultType="com.oddfar.campus.business.domain.vo.CommentVo">
+        SELECT co.comment_id,co.parent_id,co.user_id,co.to_user_id,co.one_level_id,co.content_id,co.co_content,co.ip,co.address,co.del_flag,co.create_time,
+               u.nick_name as user_nick_name,u.avatar,
+               uu.nick_name as to_user_nick_name,
+               (CASE WHEN LENGTH(c.content)>20
+                         THEN CONCAT(SUBSTRING(c.content,1,10),'...')
+                     ELSE c.content END) AS content_text
+        FROM campus_comment co
+                 LEFT JOIN sys_user u on co.user_id=u.user_id
+                 LEFT JOIN sys_user uu on co.to_user_id=uu.user_id
+                 LEFT JOIN campus_content c on co.content_id=c.content_id
+        WHERE  co.del_flag = '0' AND co.user_id=#{userId}
+        order by co.create_time DESC
+    </select>
 
 
 </mapper>

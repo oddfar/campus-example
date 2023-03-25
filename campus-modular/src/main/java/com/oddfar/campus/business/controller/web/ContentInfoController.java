@@ -172,7 +172,16 @@ public class ContentInfoController {
         contentEntity.setUserId(SecurityUtils.getUserId());
         PageUtils.startPage(10);
         PageResult<ContentVo> page = contentService.page(contentEntity);
-        return R.ok().put(page);
+        R r = new R();
+        //获取点赞列表
+        List<Long> loveContentIds = new ArrayList<>();
+
+        List<Long> ids = loveService.getLoveInfo(SecurityUtils.getUserId(), page.getRows());
+        loveContentIds.addAll(ids);
+
+        r.put("loveContentIds", loveContentIds);
+        r.put(page);
+        return r;
     }
 
 }

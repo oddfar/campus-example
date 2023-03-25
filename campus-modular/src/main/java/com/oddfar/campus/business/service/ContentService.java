@@ -77,19 +77,29 @@ public interface ContentService extends IService<ContentEntity> {
     List<ContentEntity> getSimpleHotContent();
 
     /**
+     * 根据ContentId查询信息墙内容简单文本列表
+     *
+     * @return
+     */
+    List<ContentEntity> getSimpleContentText(List<Long> contentIdList);
+
+    /**
      * 删除信息墙
+     *
      * @param contentId
      */
     void deleteContentById(Long contentId);
 
     /**
      * 删除自己的信息墙
+     *
      * @param contentId
      */
     void deleteOwnContent(Long contentId);
 
     /**
      * 检测是否自己发布的信息墙
+     *
      * @param contentId
      * @return
      */

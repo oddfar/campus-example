@@ -162,6 +162,12 @@ public class ContentServiceImpl extends ServiceImpl<ContentMapper, ContentEntity
     }
 
     @Override
+    public List<ContentEntity> getSimpleContentText(List<Long> contentIdList) {
+        List<ContentEntity> simpleContentText = contentMapper.getSimpleContentText(contentIdList);
+        return simpleContentText;
+    }
+
+    @Override
     public void deleteContentById(Long contentId) {
         ContentEntity contentEntity = contentMapper.selectById(contentId);
         if (contentEntity == null) {
@@ -334,6 +340,12 @@ public class ContentServiceImpl extends ServiceImpl<ContentMapper, ContentEntity
      * @param contentVo
      */
     private void setFileByContentEntity(ContentVo contentVo) {
+        //设置头像
+        Map<String, Object> params = contentVo.getParams();
+        if ((!params.containsKey("avatar")) || ObjectUtil.isEmpty(params.get("avatar"))) {
+            params.put("avatar", ConfigExpander.getUserDefaultAvatar());
+        }
+
         if (contentVo.getType() != 0) {
 
         }
@@ -361,6 +373,7 @@ public class ContentServiceImpl extends ServiceImpl<ContentMapper, ContentEntity
                 params.put("userName", null);
 
             }
+            //设置头像
             if ((!params.containsKey("avatar")) || ObjectUtil.isEmpty(params.get("avatar"))) {
                 params.put("avatar", ConfigExpander.getUserDefaultAvatar());
             }

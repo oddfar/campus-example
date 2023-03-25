@@ -76,6 +76,14 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, CommentEntity
     }
 
     @Override
+    public List<CommentVo> selectOwnComment() {
+
+        List<CommentVo> commentVos = commentMapper.selectOwnComment(SecurityUtils.getUserId());
+
+        return commentVos;
+    }
+
+    @Override
     public Long selectCommentCount(Long contentId) {
         return commentMapper.selectCount("content_id", contentId);
     }

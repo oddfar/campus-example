@@ -13,4 +13,12 @@ public interface SocialUserAuthService {
      * 添加第三方登录的信息
      */
     void insertUserSocial(Long socialUserId, Long userId, String source, String uuid);
+
+    /**
+     * 根据Openid添加第三方登录的信息
+     *
+     * @param openid
+     * @param userId
+     */
+    void insertUserSocialByOpenid(String openid, Long userId);
 }
