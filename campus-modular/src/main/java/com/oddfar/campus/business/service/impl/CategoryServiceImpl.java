@@ -64,7 +64,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, CategoryEnt
 
         return categoryMapper.selectList(new LambdaQueryWrapperX<CategoryEntity>()
                 .eq(CategoryEntity::getStatus, 0)
-                .eq(CategoryEntity::getType, "N")
+//                .eq(CategoryEntity::getType, "N")
                 .orderByAsc(CategoryEntity::getOrderNum)
         );
     }

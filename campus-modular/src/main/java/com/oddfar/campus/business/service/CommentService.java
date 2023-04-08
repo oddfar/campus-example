@@ -20,6 +20,7 @@ public interface CommentService extends IService<CommentEntity> {
 
     /**
      * 分页查询一级评论列表
+     *
      * @param comment
      * @return
      */
@@ -27,19 +28,38 @@ public interface CommentService extends IService<CommentEntity> {
 
     /**
      * 查询一级评论子评论
+     *
      * @param comment
      * @return
      */
     PageResult<CommentVo> selectOneLevelChild(CommentEntity comment);
 
     /**
+     * 查询一级评论子评论列表
+     *
+     * @param commentId 大于此评论id的评论列表
+     * @return 返回5个评论
+     */
+    List<CommentVo> selectOneLevelChildList(Long commentId);
+
+    /**
+     * 根据id查询评论
+     *
+     * @param commentId 评论id
+     * @return
+     */
+    CommentVo selectCommentVo(Long commentId);
+
+    /**
      * 查询自己发布或回复的评论列表
+     *
      * @return
      */
     List<CommentVo> selectOwnComment();
 
     /**
      * 获取信息墙的评论数量
+     *
      * @param contentId
      * @return
      */
@@ -51,7 +71,7 @@ public interface CommentService extends IService<CommentEntity> {
      * @param comment 评论
      * @return 结果
      */
-    public int insertComment(CommentEntity comment);
+    public Long insertComment(CommentEntity comment);
 
     /**
      * 修改评论

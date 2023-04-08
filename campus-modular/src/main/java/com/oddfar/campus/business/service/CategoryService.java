@@ -20,6 +20,7 @@ public interface CategoryService extends IService<CategoryEntity> {
 
     /**
      * 分类列表
+     *
      * @param category
      * @return
      */
@@ -27,6 +28,7 @@ public interface CategoryService extends IService<CategoryEntity> {
 
     /**
      * 分类列表
+     *
      * @return
      */
     List<CategoryEntity> categorySelect();
@@ -49,12 +51,14 @@ public interface CategoryService extends IService<CategoryEntity> {
 
     /**
      * 删除分类
+     *
      * @param categoryId
      */
     void deleteCategoryById(Long categoryId);
 
     /**
      * 根据分类id查询分类及子分类
+     *
      * @param categoryId
      * @return
      */
@@ -62,6 +66,7 @@ public interface CategoryService extends IService<CategoryEntity> {
 
     /**
      * 根据分类id查询子分类
+     *
      * @param categoryId
      * @return
      */
@@ -69,10 +74,12 @@ public interface CategoryService extends IService<CategoryEntity> {
 
     /**
      * 查询分类是否存在
+     *
      * @param categoryId 分类id
      * @return true为存在
      */
     boolean hasCategoryById(Long categoryId);
+
     /**
      * 校验分类名称是否唯一
      *

@@ -13,6 +13,7 @@ import com.oddfar.campus.common.domain.R;
 import com.oddfar.campus.common.enums.ResBizTypeEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,31 +35,42 @@ public class CommentInfoController {
         PageResult<CommentVo> commentVos = commentService.selectOneLevel(commentEntity);
         R r = new R();
         r.put(commentVos);
-        r.put("allTotal",commentService.selectCommentCount(commentEntity.getContentId()));
+        r.put("allTotal", commentService.selectCommentCount(commentEntity.getContentId()));
         return r;
     }
 
     /**
-     * 查询一级评论的子评论
+     * 分页查询一级评论的子评论
      */
     @Anonymous
-    @GetMapping(value = "/getCommentChildren", name = "查询一级评论的子评论")
+    @GetMapping(value = "/getCommentChildren", name = "分页查询一级评论的子评论")
     public R getCommentChildren(CommentEntity commentEntity) {
         PageResult<CommentVo> commentVos = commentService.selectOneLevelChild(commentEntity);
         return R.ok().put(commentVos);
     }
 
     /**
+     * 查询一级评论的子评论
+     */
+    @Anonymous
+    @GetMapping(value = "/getCommentChildrenList", name = "查询一级评论的子评论")
+    public R getCommentChildrenList(Long commentId) {
+        List<CommentVo> commentVos = commentService.selectOneLevelChildList(commentId);
+        return R.ok(commentVos);
+    }
+
+
+    /**
      * 分页查询自己发布或回复的评论列表
      */
     @PreAuthorize("@ss.resourceAuth()")
-    @GetMapping(value = "getOwnComment",name = "分页查询自己发布或回复的评论列表")
-    public R getOwnCommentList(){
+    @GetMapping(value = "getOwnComment", name = "分页查询自己发布或回复的评论列表")
+    public R getOwnCommentList() {
         PageUtils.startPage(5);
         List<CommentVo> commentVos = commentService.selectOwnComment();
         //封装分页数据
         PageResult pageResult = PageUtils.getPageResult(commentVos);
-        return  R.ok().put(pageResult);
+        return R.ok().put(pageResult);
     }
 
     /**
@@ -66,12 +78,20 @@ public class CommentInfoController {
      */
     @PreAuthorize("@ss.resourceAuth()")
     @PostMapping(value = "/toComment", name = "添加评论")
-    public R toComment(@RequestBody ToCommentVo toCommentVo) {
+    public R toComment(@RequestBody @Validated ToCommentVo toCommentVo) {
         CommentEntity commentEntity = new CommentEntity();
         BeanUtil.copyProperties(toCommentVo, commentEntity);
 
         return R.ok(commentService.insertComment(commentEntity));
     }
 
+    /**
+     * 查询评论详细信息
+     */
+    @Anonymous()
+    @GetMapping(value = "/getComment", name = "添加评论")
+    public R getComment(Long commentId) {
 
+        return R.ok(commentService.selectCommentVo(commentId));
+    }
 }

@@ -33,7 +33,6 @@ public class CampusInfoController {
     @Anonymous
     @GetMapping(value = "/categoryList", name = "查询分类列表")
     public R categoryList() {
-        CategoryEntity categoryEntity = new CategoryEntity();
         List<CategoryEntity> page = categoryService.categorySelect();
 
         return R.ok().put(page);

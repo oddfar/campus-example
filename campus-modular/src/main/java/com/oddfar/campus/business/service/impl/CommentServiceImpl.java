@@ -14,8 +14,10 @@ import com.oddfar.campus.common.domain.PageResult;
 import com.oddfar.campus.common.exception.ServiceException;
 import com.oddfar.campus.common.utils.SecurityUtils;
 import com.oddfar.campus.common.utils.ServletUtils;
+import com.oddfar.campus.common.utils.StringUtils;
 import com.oddfar.campus.common.utils.ip.AddressUtils;
 import com.oddfar.campus.common.utils.ip.IpUtils;
+import com.oddfar.campus.framework.api.sysconfig.ConfigExpander;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,19 +46,22 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, CommentEntity
 //        comment.setPageNum(firstIndex);
 
         ContentEntity content = contentMapper.selectById(comment.getContentId());
-        comment.setCommentId(content.getContentId());
 
         if (content != null) {
+            comment.setCommentId(content.getContentId());
             //开始分页，固定大小5
             PageUtils.startPage(5);
             //获取一级评论
             List<CommentVo> oneLevel = commentMapper.getOneLevel(comment);
             //查询一级评论中的子评论有作者的
-            if (oneLevel.size() > 0) {
+            if (oneLevel != null && oneLevel.size() > 0) {
                 List<Long> commentIdList = oneLevel.stream().map(CommentVo::getCommentId).collect(Collectors.toList());
                 List<CommentVo> oneLevelChild = commentMapper.getOneLevelChildHaveAuthor(commentIdList, content.getUserId());
                 oneLevel.addAll(oneLevelChild);
             }
+
+            setCommentOther(oneLevel);
+
             //封装分页数据
 //            return new PageResult<CommentVo>(oneLevel, selectCommentCount(content.getContentId()));
             return PageUtils.getPageResult(oneLevel);
@@ -71,8 +76,31 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, CommentEntity
         //开始分页，固定大小5
         PageUtils.startPage(5);
         List<CommentVo> oneLevelChild = commentMapper.getOneLevelChild(comment);
+        setCommentOther(oneLevelChild);
         //封装分页数据
         return PageUtils.getPageResult(oneLevelChild);
+    }
+
+    @Override
+    public List<CommentVo> selectOneLevelChildList(Long commentId) {
+        CommentEntity commentEntity = commentMapper.selectById(commentId);
+        if (commentEntity == null) {
+            throw new ServiceException(CampusBizCodeEnum.COMMENT_IS_NULL.getMsg(), CampusBizCodeEnum.COMMENT_IS_NULL.getCode());
+        }
+        List<CommentVo> oneLevelChild = null;
+        if (commentEntity.getOneLevelId() == -1) {
+            oneLevelChild = commentMapper.getOneLevelChildList(commentEntity.getCommentId(), commentId);
+        } else {
+            oneLevelChild = commentMapper.getOneLevelChildList(commentId, commentEntity.getOneLevelId());
+        }
+        setCommentOther(oneLevelChild);
+
+        return oneLevelChild;
+    }
+
+    @Override
+    public CommentVo selectCommentVo(Long commentId) {
+        return commentMapper.selectCommentVo(commentId);
     }
 
     @Override
@@ -89,7 +117,7 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, CommentEntity
     }
 
     @Override
-    public int insertComment(CommentEntity comment) {
+    public Long insertComment(CommentEntity comment) {
         Long userId = SecurityUtils.getUserId();
         if (comment.getContentId() != null) {
             //添加一级评论
@@ -120,10 +148,12 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, CommentEntity
             comment.setContentId(commentEntity.getContentId());
         }
         comment.setCommentId(IdWorker.getId());
+        comment.setCommentId(IdWorker.getId());
         comment.setUserId(userId);
         comment.setIp(IpUtils.getIpAddr(ServletUtils.getRequest()));
         comment.setAddress(AddressUtils.getRealAddressByIP(comment.getIp()));
-        return commentMapper.insert(comment);
+        commentMapper.insert(comment);
+        return comment.getCommentId();
     }
 
     @Override
@@ -131,6 +161,15 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, CommentEntity
         return commentMapper.updateById(comment);
     }
 
+    private void setCommentOther(List<CommentVo> commentVos) {
+        String userDefaultAvatar = ConfigExpander.getUserDefaultAvatar();
+        commentVos.stream().forEach(commentVo -> {
+            if (StringUtils.isEmpty(commentVo.getAvatar())) {
+                commentVo.setAvatar(userDefaultAvatar);
+            }
+        });
+
+    }
 }
 
 

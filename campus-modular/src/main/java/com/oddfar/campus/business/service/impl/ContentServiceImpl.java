@@ -362,6 +362,7 @@ public class ContentServiceImpl extends ServiceImpl<ContentMapper, ContentEntity
      * @param contentVos
      */
     private void setAnonymous(List<ContentVo> contentVos) {
+        String userDefaultAvatar = ConfigExpander.getUserDefaultAvatar();
         for (ContentVo contentVo : contentVos) {
             Map<String, Object> params = contentVo.getParams();
             if (contentVo.getIsAnonymous() == 1) {
@@ -375,7 +376,7 @@ public class ContentServiceImpl extends ServiceImpl<ContentMapper, ContentEntity
             }
             //设置头像
             if ((!params.containsKey("avatar")) || ObjectUtil.isEmpty(params.get("avatar"))) {
-                params.put("avatar", ConfigExpander.getUserDefaultAvatar());
+                params.put("avatar", userDefaultAvatar);
             }
 
         }

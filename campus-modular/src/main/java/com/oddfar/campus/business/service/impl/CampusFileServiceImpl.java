@@ -147,7 +147,6 @@ public class CampusFileServiceImpl extends ServiceImpl<CampusFileMapper, CampusF
     /**
      * 保存文件信息到数据库
      *
-     * @return
      */
     private CampusFileEntity saveDB(String path) {
         CampusFileEntity campusFileEntity = new CampusFileEntity();
