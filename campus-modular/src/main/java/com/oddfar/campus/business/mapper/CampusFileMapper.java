@@ -22,13 +22,14 @@ public interface CampusFileMapper extends BaseMapperX<CampusFileEntity> {
 
     /**
      * 获取用户当日上传文件的数量
+     *
      * @param userId
      * @return
      */
     default long getFileCountDay(Long userId) {
 
         Date start = Convert.toDate(DateUtil.today() + " 00:00:00");
-        Date end = Convert.toDate(DateUtil.today()  + " 23:59:59");
+        Date end = Convert.toDate(DateUtil.today() + " 23:59:59");
 
         return selectCount(new LambdaQueryWrapperX<CampusFileEntity>()
                 .eq(CampusFileEntity::getUserId, userId)
@@ -37,6 +38,20 @@ public interface CampusFileMapper extends BaseMapperX<CampusFileEntity> {
     }
 
     int updateContentFile(@Param("fileIds") List<Long> fileIds, @Param("contentId") Long contentId);
+
+    /**
+     * 获取昨日没有分配信息墙的文件列表
+     *
+     * @return
+     */
+    default List<CampusFileEntity> getNoContentFileList() {
+        Date start = Convert.toDate(DateUtil.today() + " 00:00:00");
+
+        return selectList(new LambdaQueryWrapperX<CampusFileEntity>()
+                .isNull(CampusFileEntity::getContentId)
+                .le(CampusFileEntity::getCreateTime, start)
+        );
+    }
 }
 
 

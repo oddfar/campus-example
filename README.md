@@ -4,9 +4,7 @@
   <a href="https://github.com/oddfar/campus-example/stargazers"><img src="https://img.shields.io/github/stars/oddfar/campus-example.svg"></a>
 	<a href="https://github.com/oddfar/campus/blob/master/LICENSE"><img src="https://img.shields.io/github/license/mashape/apistatus.svg"></a>
 </p>
-
-
-<p align="center"> 校园信息墙，万能墙，表白墙。是一个新式的信息交流的平台，有助于帮助学生及时查阅校内实时信息，在此平台去获取或者发布自己的供需信息。 </p>
+<p align="center">Web 端使用 Vue + ElementUi，仿微博UI布局。 移动端使用 uni-app 和 uview，后端使用  SpringBoot + Mybatis-Plus进行开发</p>
 
 <h2 align="center">Campus-exampus</h2>
 
@@ -20,13 +18,30 @@
 
 > **Campus** 一款简单的后台管理系统，快速开发框架，适合大学生开发毕设，或其他小项目。
 
-本项目为编写的一个例子：校园信息墙、表白墙、万能墙
+本项目为编写的一个例子——校园圈|信息墙|表白墙|万能墙
 
-- 在线预览：暂无
-
+- 项目在线预览地址：暂无
 - 项目文档：<https://oddfar.github.io/campus-doc/campus-example>
 
-### 项目代码
+> 校园信息墙，万能墙，表白墙。是一个新式的信息交流的平台，有助于帮助学生及时查阅校内实时信息，在此平台去获取或者发布自己的供需信息。
+
+Web 端使用 **Vue** + **ElementUi**，仿微博UI布局。 移动端使用 **uniapp** 和 **uview**，后端使用  **SpringBoot** + **Mybatis-Plus**进行开发
+
+- PC网页端完全响应式布局
+
+  支持电脑、平板、手机等所有主流设备
+
+  部分样式暂时建议PC访问，还没有进行完善更改
+
+- 移动端
+
+  支持小程序、H5、Android和IOS
+
+  精力有限，只调试了微信小程序，其它可能有样式问题，或兼容问题
+
+  目前完成了绝大部分功能，可正常线上运行
+
+## 项目代码
 
 |                | GitHub                                          |
 | -------------- | ----------------------------------------------- |
@@ -35,12 +50,6 @@
 | uni-app 移动端 | <https://github.com/oddfar/uni-app_campus_web>  |
 
 vue后台代码在后端项目中
-
-## 贡献代码
-
-若您有好的想法，发现一些 **BUG** 并修复了，欢迎提交 **Pull Request** 参与开源贡献
-
-发起 pull request 请求，提交到 master 分支，等待作者合并
 
 
 
@@ -60,6 +69,16 @@ vue后台代码在后端项目中
 | ![image-20230221091804015](https://gcore.jsdelivr.net/gh/oddfar/static/campus/doc/image-20230221091804015.png) | ![image-20230221091942563](https://gcore.jsdelivr.net/gh/oddfar/static/campus/doc/image-20230221091942563.png) |
 | ![image-20230221092022247](https://gcore.jsdelivr.net/gh/oddfar/static/campus/doc/image-20230221092022247.png) | ![image-20230221092059047](https://gcore.jsdelivr.net/gh/oddfar/static/campus/doc/image-20230221092059047.png) |
 | ![image-20230221092122331](https://gcore.jsdelivr.net/gh/oddfar/static/campus/doc/image-20230221092122331.png) | ![image-20230221092152935](https://gcore.jsdelivr.net/gh/oddfar/static/campus/doc/image-20230221092152935.png) |
+
+
+
+移动端（小程序）
+
+| 移动端                                                       |                                                              |                                                              |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| ![image-20230412210057613](https://gcore.jsdelivr.net/gh/oddfar/static/campus/doc/image-20230412210057613.png) | ![image-20230412210148423](https://gcore.jsdelivr.net/gh/oddfar/static/campus/doc/image-20230412210148423.png) | ![image-20230412210214019](https://gcore.jsdelivr.net/gh/oddfar/static/campus/doc/image-20230412210214019.png) |
+| ![image-20230412210256253](https://gcore.jsdelivr.net/gh/oddfar/static/campus/doc/image-20230412210256253.png) | ![image-20230412210328222](https://gcore.jsdelivr.net/gh/oddfar/static/campus/doc/image-20230412210328222.png) | ![image-20230412210405497](https://gcore.jsdelivr.net/gh/oddfar/static/campus/doc/image-20230412210405497.png) |
+| ![image-20230412210534659](https://gcore.jsdelivr.net/gh/oddfar/static/campus/doc/image-20230412210534659.png) | ![image-20230412210606552](https://gcore.jsdelivr.net/gh/oddfar/static/campus/doc/image-20230412210606552.png) |                                                              |
 
 
 

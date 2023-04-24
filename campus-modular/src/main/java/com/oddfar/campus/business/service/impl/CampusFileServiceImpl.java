@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -115,20 +116,37 @@ public class CampusFileServiceImpl extends ServiceImpl<CampusFileMapper, CampusF
     public int updateContentFile(List<Long> fileIds, Long contentId) {
         if (fileIds != null && fileIds.size() > 0) {
             return campusFileMapper.updateContentFile(fileIds, contentId);
-        }else {
+        } else {
             return 0;
         }
 
     }
 
     @Override
-    public boolean fileExist(List<Long> fileIds,int type) {
+    public boolean fileExist(List<Long> fileIds, int type) {
         if (fileIds.size() == 0) {
             return false;
         }
         Long count = campusFileMapper.selectCount(new LambdaQueryWrapperX<CampusFileEntity>()
                 .in(CampusFileEntity::getFileId, fileIds).isNull(CampusFileEntity::getContentId));
         return count == fileIds.size();
+    }
+
+    @Override
+    public void removeCampusFile() {
+        List<CampusFileEntity> fileList = campusFileMapper.getNoContentFileList();
+
+        fileList.forEach(i -> {
+            String filePath = i.getUrl();
+            if (filePath.startsWith("/profile")) {
+                File file = new File(FileUploadUtils.getDefaultBaseDir()
+                        + filePath.replace("/profile", ""));
+                if (file.isFile() && file.exists()) {
+                    campusFileMapper.deleteById(i.getFileId());
+                }
+            }
+
+        });
     }
 
     /**
@@ -146,7 +164,6 @@ public class CampusFileServiceImpl extends ServiceImpl<CampusFileMapper, CampusF
 
     /**
      * 保存文件信息到数据库
-     *
      */
     private CampusFileEntity saveDB(String path) {
         CampusFileEntity campusFileEntity = new CampusFileEntity();

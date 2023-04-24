@@ -51,11 +51,14 @@ public interface CampusFileService extends IService<CampusFileEntity> {
 
     /**
      * 文件是否都存在 且 contentId为null
-     *
      * @param fileId
+     * @param type
      * @return
      */
     boolean fileExist(List<Long> fileId, int type);
 
-
+    /**
+     * 删除信息墙没分配的文件
+     */
+    void removeCampusFile();
 }
