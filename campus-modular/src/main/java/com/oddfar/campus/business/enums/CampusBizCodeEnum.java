@@ -24,6 +24,7 @@ public enum CampusBizCodeEnum {
     SMS_CODE_EXCEPTION(10002, "验证码获取频率太高，请稍后再试"),
     TOO_MANY_REQUEST(10003, "请求流量过大，请稍后再试"),
     TOO_MANY_File(10004, "上传文件数量超限，请明日上传"),
+    CODE_ERROR(10005, "验证码错误"),
 
     NO_THREE_CATEGORY(10010, "禁止添加三级分类"),
     CATEGORY_NAME_REPEAT(10011, "分类名称重复"),
@@ -47,6 +48,7 @@ public enum CampusBizCodeEnum {
      * 用户
      */
     NOT_LOGGED_IN(11001,"请登录后操作"),
+    EMAIL_NOT_EXIST(11002,"邮箱不存在"),
 
     /**
      * 评论

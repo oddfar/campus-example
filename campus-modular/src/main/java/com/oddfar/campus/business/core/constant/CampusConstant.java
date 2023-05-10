@@ -2,7 +2,6 @@ package com.oddfar.campus.business.core.constant;
 
 /**
  * 通用常量信息
- *
  */
 public class CampusConstant {
 
@@ -11,7 +10,6 @@ public class CampusConstant {
      * 绑定邮箱有效期（分钟）
      */
     public static final Integer BIND_MAIL_EXPIRATION = 10;
-
 
     /**
      * 重发验证码有效期（分钟）
@@ -27,5 +25,15 @@ public class CampusConstant {
      * 检测重复发送邮箱验证码的key
      */
     public static final String MAIL_CHECK_KEY = "mail_check_codes:";
+
+    /**
+     * 重置密码key
+     */
+    public static final String RESET_PWD_KEY = "reset_pwd:";
+
+    /**
+     * 重置密码code有效期（分钟）
+     */
+    public static final Integer RESET_PWD_EXPIRATION = 10;
 
 }

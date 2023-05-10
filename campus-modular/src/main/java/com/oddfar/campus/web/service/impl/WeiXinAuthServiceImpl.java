@@ -92,7 +92,6 @@ public class WeiXinAuthServiceImpl implements WeiXinAuthService {
         SysUserEntity userEntity = new SysUserEntity();
         if (userId == null) {
             throw new ServiceException("请使用小程序绑定账号再登录");
-            //TODO 新用户小程序登录待更新
             //暂且先这样处理
 
 //            long id = IdWorker.getId();
