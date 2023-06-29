@@ -1,5 +1,6 @@
 package com.oddfar.campus.business.mapper;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.oddfar.campus.business.domain.entity.CommentEntity;
 import com.oddfar.campus.business.domain.vo.CommentVo;
 import com.oddfar.campus.common.core.BaseMapperX;
@@ -23,6 +24,15 @@ public interface CommentMapper extends BaseMapperX<CommentEntity> {
                 .eqIfPresent(CommentEntity::getUserId, comment.getUserId())
                 .eqIfPresent(CommentEntity::getContentId, comment.getContentId())
         );
+    }
+    /**
+     * 获取信息墙的总评论数量
+     *
+     * @param contentId
+     * @return
+     */
+    default Long getCommentCount(Long contentId){
+        return selectCount(new QueryWrapper<CommentEntity>().eq("content_id", contentId));
     }
 
     /**

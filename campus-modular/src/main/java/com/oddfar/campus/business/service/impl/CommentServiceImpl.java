@@ -113,7 +113,7 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, CommentEntity
 
     @Override
     public Long selectCommentCount(Long contentId) {
-        return commentMapper.selectCount("content_id", contentId);
+        return commentMapper.getCommentCount( contentId);
     }
 
     @Override
@@ -159,6 +159,16 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, CommentEntity
     @Override
     public int updateComment(CommentEntity comment) {
         return commentMapper.updateById(comment);
+    }
+
+    @Override
+    public int delOwnComment(Long commentId) {
+        CommentEntity commentEntity = commentMapper.selectById(commentId);
+        if (commentEntity != null && commentEntity.getUserId().equals(SecurityUtils.getUserId())) {
+            return commentMapper.deleteById(commentId);
+        } else {
+            throw new ServiceException(CampusBizCodeEnum.COMMENT_DEL_ERR.getMsg(), CampusBizCodeEnum.COMMENT_DEL_ERR.getCode());
+        }
     }
 
     private void setCommentOther(List<CommentVo> commentVos) {

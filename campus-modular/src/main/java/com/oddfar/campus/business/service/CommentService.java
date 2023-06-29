@@ -58,7 +58,7 @@ public interface CommentService extends IService<CommentEntity> {
     List<CommentVo> selectOwnComment();
 
     /**
-     * 获取信息墙的评论数量
+     * 获取信息墙的总评论数量
      *
      * @param contentId
      * @return
@@ -71,7 +71,7 @@ public interface CommentService extends IService<CommentEntity> {
      * @param comment 评论
      * @return 结果
      */
-    public Long insertComment(CommentEntity comment);
+    Long insertComment(CommentEntity comment);
 
     /**
      * 修改评论
@@ -79,6 +79,14 @@ public interface CommentService extends IService<CommentEntity> {
      * @param comment 评论
      * @return 结果
      */
-    public int updateComment(CommentEntity comment);
+    int updateComment(CommentEntity comment);
+
+    /**
+     * 删除自己的评论
+     *
+     * @param commentId 评论id
+     * @return 结果
+     */
+    int delOwnComment(Long commentId);
 
 }

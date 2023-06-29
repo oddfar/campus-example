@@ -29,7 +29,7 @@
     <select id="getOneLevel" parameterType="com.oddfar.campus.business.domain.entity.CommentEntity"
             resultType="com.oddfar.campus.business.domain.vo.CommentVo">
         SELECT co.comment_id,co.parent_id,co.user_id,co.to_user_id,co.one_level_id,co.content_id,co.co_content,co.ip,co.address,co.del_flag,co.create_time,
-               (select COUNT(*)  FROM campus_comment WHERE one_level_id = co.comment_id) children_count,
+               (select COUNT(*)  FROM campus_comment WHERE one_level_id = co.comment_id and del_flag = '0') children_count,
                u.nick_name as user_nick_name,u.avatar
         FROM campus_comment co
                  LEFT JOIN sys_user u on co.user_id=u.user_id

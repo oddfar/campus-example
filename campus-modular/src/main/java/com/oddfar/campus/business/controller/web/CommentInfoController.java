@@ -94,4 +94,15 @@ public class CommentInfoController {
 
         return R.ok(commentService.selectCommentVo(commentId));
     }
+
+
+    /**
+     * 删除自己的评论
+     */
+    @PreAuthorize("@ss.resourceAuth()")
+    @PostMapping(value = "/delOwnComment", name = "删除自己的评论")
+    public R delOwnComment(Long commentId) {
+
+        return R.ok(commentService.delOwnComment(commentId));
+    }
 }

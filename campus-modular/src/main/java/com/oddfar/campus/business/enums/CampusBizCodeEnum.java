@@ -54,7 +54,7 @@ public enum CampusBizCodeEnum {
      * 评论
      */
     COMMENT_IS_NULL(13001,"评论不存在"),
-
+    COMMENT_DEL_ERR(13002,"评论删除失败"),
 
 
     SMS_SEND_CODE_EXCEPTION(10403, "短信发送失败"),
