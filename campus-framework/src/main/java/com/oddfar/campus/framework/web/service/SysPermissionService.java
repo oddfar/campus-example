@@ -66,7 +66,7 @@ public class SysPermissionService {
             perms.add("*:*:*");
         } else {
             List<SysRoleEntity> roles = user.getRoles();
-            if (roles != null && !roles.isEmpty()) {
+            if (!roles.isEmpty() && roles.size() > 1) {
                 // 多角色设置permissions属性，以便数据权限匹配权限
                 for (SysRoleEntity role : roles) {
                     Set<String> rolePerms = menuService.selectMenuPermsByRoleId(role.getRoleId());

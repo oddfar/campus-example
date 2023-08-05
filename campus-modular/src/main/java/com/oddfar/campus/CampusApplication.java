@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
+ * 源码地址：https://github.com/oddfar/campus-example
  * @author zhiyuan
  */
 @SpringBootApplication
