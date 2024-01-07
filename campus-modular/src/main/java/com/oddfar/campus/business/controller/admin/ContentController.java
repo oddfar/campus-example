@@ -63,10 +63,10 @@ public class ContentController {
      * 删除校园墙内容
      */
     @PreAuthorize("@ss.resourceAuth()")
-    @DeleteMapping("/{contentIds}")
+    @DeleteMapping(value = "/{contentIds}", name = "删除校园墙内容")
     public R remove(@PathVariable Long[] contentIds) {
         for (Long contentId : contentIds) {
-            contentService.deleteOwnContent(contentId);
+            contentService.deleteContentById(contentId);
         }
         return R.ok();
     }
