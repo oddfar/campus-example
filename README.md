@@ -51,7 +51,11 @@ Web 端使用 **Vue** + **ElementUi**，仿微博UI布局。 移动端使用 **u
 
 vue后台代码在后端项目中
 
+## 交流
 
+欢迎各位老哥进群交流
+
+<img src="https://note.oddfar.com/img/campus-example-group.jpg" alt="wechat" style="height:280px;" />
 
 ## 演示图
 
