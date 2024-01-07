@@ -3,7 +3,7 @@ campus:
   # 名称
   name: oddfar-campus-example
   # 版本
-  version: 1.1.6
+  version: 1.1.7
 
 server:
   port: 8160

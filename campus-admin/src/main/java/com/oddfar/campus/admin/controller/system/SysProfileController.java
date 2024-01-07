@@ -10,6 +10,7 @@ import com.oddfar.campus.common.utils.StringUtils;
 import com.oddfar.campus.framework.api.file.FileUploadUtils;
 import com.oddfar.campus.framework.api.file.MimeTypeUtils;
 import com.oddfar.campus.framework.api.sysconfig.ConfigExpander;
+import com.oddfar.campus.framework.mapper.SysUserMapper;
 import com.oddfar.campus.framework.service.SysUserService;
 import com.oddfar.campus.framework.web.service.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,8 @@ import static com.oddfar.campus.common.utils.SecurityUtils.getLoginUser;
 public class SysProfileController {
     @Autowired
     private SysUserService userService;
-
+    @Autowired
+    private SysUserMapper userMapper;
     @Autowired
     private TokenService tokenService;
 
@@ -46,7 +48,7 @@ public class SysProfileController {
     /**
      * 修改用户
      */
-    @PutMapping("个人信息管理-修改")
+    @PutMapping(name = "个人信息管理-修改")
     public R updateProfile(@RequestBody SysUserEntity user) {
         LoginUser loginUser = getLoginUser();
         SysUserEntity sysUser = loginUser.getUser();
@@ -79,9 +81,10 @@ public class SysProfileController {
      */
     @PutMapping(value = "/updatePwd", name = "个人信息管理-重置密码")
     public R updatePwd(String oldPassword, String newPassword) {
-        LoginUser loginUser = getLoginUser();
-        String userName = loginUser.getUsername();
-        String password = loginUser.getPassword();
+        SysUserEntity user = userMapper.selectById(SecurityUtils.getUserId());
+//        LoginUser loginUser = getLoginUser();
+        String userName = user.getUserName();
+        String password = user.getPassword();
         if (!SecurityUtils.matchesPassword(oldPassword, password)) {
             return R.error("修改密码失败，旧密码错误");
         }
@@ -89,9 +92,9 @@ public class SysProfileController {
             return R.error("新密码不能与旧密码相同");
         }
         if (userService.resetUserPwd(userName, SecurityUtils.encryptPassword(newPassword)) > 0) {
-            // 更新缓存用户密码
-            loginUser.getUser().setPassword(SecurityUtils.encryptPassword(newPassword));
-            tokenService.setLoginUser(loginUser);
+//            // 更新缓存用户密码
+//            loginUser.getUser().setPassword(SecurityUtils.encryptPassword(newPassword));
+//            tokenService.setLoginUser(loginUser);
             return R.ok();
         }
         return R.error("修改密码异常，请联系管理员");
