@@ -1,20 +1,6 @@
-/*
- Navicat Premium Data Transfer
 
- Source Server         : local
- Source Server Type    : MySQL
- Source Server Version : 80028
- Source Host           : localhost:3306
- Source Schema         : campus_example
 
- Target Server Type    : MySQL
- Target Server Version : 80028
- File Encoding         : 65001
-
- Date: 08/04/2023 23:49:02
-*/
-
-SET NAMES utf8mb4;
+SET NAMES utf8;
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
@@ -64,11 +50,11 @@ DROP TABLE IF EXISTS `campus_comment`;
 CREATE TABLE `campus_comment` (
   `comment_id` bigint NOT NULL COMMENT '评论主键',
   `parent_id` bigint DEFAULT '0' COMMENT '上级id',
-  `one_level_id` bigint DEFAULT '-1' COMMENT '所属的一级评论id',
+  `one_level_id` bigint DEFAULT NULL COMMENT '所属的一级评论id',
   `user_id` bigint DEFAULT NULL COMMENT '用户id',
-  `to_user_id` bigint DEFAULT '-1' COMMENT '所回复目标评论的用户id',
+  `to_user_id` bigint DEFAULT NULL COMMENT '所回复目标评论的用户id',
   `content_id` bigint DEFAULT NULL COMMENT '内容id',
-  `co_content` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '评论内容',
+  `co_content` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '评论内容',
   `ip` varchar(64) DEFAULT NULL COMMENT '评论时的ip',
   `address` varchar(100) DEFAULT NULL COMMENT '评论时的地址',
   `del_flag` bit(1) DEFAULT b'0' COMMENT '逻辑删除(1:已删除，0:未删除)',
@@ -83,29 +69,6 @@ CREATE TABLE `campus_comment` (
 -- Records of campus_comment
 -- ----------------------------
 BEGIN;
-INSERT INTO `campus_comment` (`comment_id`, `parent_id`, `one_level_id`, `user_id`, `to_user_id`, `content_id`, `co_content`, `ip`, `address`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (11, 0, -1, 1594285543804383234, -1, 1, '你好11', '127.0.0.1', '内网IP', b'0', '2023-01-06 15:27:22', NULL, '2023-01-14 20:09:50', NULL);
-INSERT INTO `campus_comment` (`comment_id`, `parent_id`, `one_level_id`, `user_id`, `to_user_id`, `content_id`, `co_content`, `ip`, `address`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (12, 0, -1, 1594285543804383234, -1, 1, '你好12', '127.0.0.1', '内网IP', b'0', '2023-01-06 15:27:22', NULL, '2023-01-14 20:09:52', NULL);
-INSERT INTO `campus_comment` (`comment_id`, `parent_id`, `one_level_id`, `user_id`, `to_user_id`, `content_id`, `co_content`, `ip`, `address`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (13, 0, -1, 1594285543804383234, -1, 1, '你好13', '127.0.0.1', '内网IP', b'0', '2023-01-06 15:27:22', NULL, '2023-01-14 20:09:53', NULL);
-INSERT INTO `campus_comment` (`comment_id`, `parent_id`, `one_level_id`, `user_id`, `to_user_id`, `content_id`, `co_content`, `ip`, `address`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (14, 0, -1, 1594285543804383234, -1, 1, '你好14', '127.0.0.1', '内网IP', b'0', '2023-01-06 15:27:22', NULL, '2023-01-14 20:09:55', NULL);
-INSERT INTO `campus_comment` (`comment_id`, `parent_id`, `one_level_id`, `user_id`, `to_user_id`, `content_id`, `co_content`, `ip`, `address`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (15, 0, -1, 1594285543804383234, -1, 1, '你好15', '127.0.0.1', '内网IP', b'0', '2023-01-06 15:27:22', NULL, '2023-01-14 20:09:57', NULL);
-INSERT INTO `campus_comment` (`comment_id`, `parent_id`, `one_level_id`, `user_id`, `to_user_id`, `content_id`, `co_content`, `ip`, `address`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (16, 0, -1, 1594285543804383234, -1, 1, '你好16', '127.0.0.1', '内网IP', b'0', '2023-01-06 15:27:22', NULL, '2023-01-14 20:10:00', NULL);
-INSERT INTO `campus_comment` (`comment_id`, `parent_id`, `one_level_id`, `user_id`, `to_user_id`, `content_id`, `co_content`, `ip`, `address`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (17, 0, -1, 1594285543804383234, -1, 1, '你好17', '127.0.0.1', '内网IP', b'0', '2023-01-06 15:27:22', NULL, '2023-01-14 20:10:02', NULL);
-INSERT INTO `campus_comment` (`comment_id`, `parent_id`, `one_level_id`, `user_id`, `to_user_id`, `content_id`, `co_content`, `ip`, `address`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (18, 0, -1, 1594285543804383234, -1, 1, '你好18', '127.0.0.1', '内网IP', b'0', '2023-01-06 15:27:22', NULL, '2023-01-14 20:10:04', NULL);
-INSERT INTO `campus_comment` (`comment_id`, `parent_id`, `one_level_id`, `user_id`, `to_user_id`, `content_id`, `co_content`, `ip`, `address`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (1629730765613047809, 0, -1, 1594285543804383234, -1, 1629730419490693121, '世界', '127.0.0.1', '内网IP', b'0', '2023-02-26 14:31:08', 1594285543804383234, '2023-02-26 14:31:08', NULL);
-INSERT INTO `campus_comment` (`comment_id`, `parent_id`, `one_level_id`, `user_id`, `to_user_id`, `content_id`, `co_content`, `ip`, `address`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (1629730802099298306, 1629730765613047809, 1629730765613047809, 1594285543804383234, -1, 1629730419490693121, 'hello world！', '127.0.0.1', '内网IP', b'0', '2023-02-26 14:31:17', 1594285543804383234, '2023-02-26 14:31:16', NULL);
-INSERT INTO `campus_comment` (`comment_id`, `parent_id`, `one_level_id`, `user_id`, `to_user_id`, `content_id`, `co_content`, `ip`, `address`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (1635847411633246209, 1629730765613047809, 1629730765613047809, 1594285543804383234, -1, 1629730419490693121, '123', '127.0.0.1', '内网IP', b'0', '2023-03-15 11:36:30', 1594285543804383234, '2023-03-15 11:36:30', NULL);
-INSERT INTO `campus_comment` (`comment_id`, `parent_id`, `one_level_id`, `user_id`, `to_user_id`, `content_id`, `co_content`, `ip`, `address`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (1636017759590830082, 0, -1, 1594285543804383234, -1, 1629730419490693121, '1', '127.0.0.1', '内网IP', b'0', '2023-03-15 22:53:24', 1594285543804383234, '2023-03-15 22:53:24', NULL);
-INSERT INTO `campus_comment` (`comment_id`, `parent_id`, `one_level_id`, `user_id`, `to_user_id`, `content_id`, `co_content`, `ip`, `address`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (1636017766272356353, 0, -1, 1594285543804383234, -1, 1629730419490693121, '2', '127.0.0.1', '内网IP', b'0', '2023-03-15 22:53:26', 1594285543804383234, '2023-03-15 22:53:25', NULL);
-INSERT INTO `campus_comment` (`comment_id`, `parent_id`, `one_level_id`, `user_id`, `to_user_id`, `content_id`, `co_content`, `ip`, `address`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (1636017772526063617, 0, -1, 1594285543804383234, -1, 1629730419490693121, '3', '127.0.0.1', '内网IP', b'0', '2023-03-15 22:53:27', 1594285543804383234, '2023-03-15 22:53:27', NULL);
-INSERT INTO `campus_comment` (`comment_id`, `parent_id`, `one_level_id`, `user_id`, `to_user_id`, `content_id`, `co_content`, `ip`, `address`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (1636017800254607362, 0, -1, 1594285543804383234, -1, 1629730419490693121, '4', '127.0.0.1', '内网IP', b'0', '2023-03-15 22:53:34', 1594285543804383234, '2023-03-15 22:53:33', NULL);
-INSERT INTO `campus_comment` (`comment_id`, `parent_id`, `one_level_id`, `user_id`, `to_user_id`, `content_id`, `co_content`, `ip`, `address`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (1636017809863757825, 0, -1, 1594285543804383234, -1, 1629730419490693121, '5', '127.0.0.1', '内网IP', b'0', '2023-03-15 22:53:36', 1594285543804383234, '2023-03-15 22:53:36', NULL);
-INSERT INTO `campus_comment` (`comment_id`, `parent_id`, `one_level_id`, `user_id`, `to_user_id`, `content_id`, `co_content`, `ip`, `address`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (1636017819649069057, 0, -1, 1594285543804383234, -1, 1629730419490693121, '6', '127.0.0.1', '内网IP', b'0', '2023-03-15 22:53:39', 1594285543804383234, '2023-03-15 22:53:38', NULL);
-INSERT INTO `campus_comment` (`comment_id`, `parent_id`, `one_level_id`, `user_id`, `to_user_id`, `content_id`, `co_content`, `ip`, `address`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (1636022008630497281, 1636017819649069057, 1636017819649069057, 1594285543804383234, -1, 1629730419490693121, '7', '127.0.0.1', '内网IP', b'0', '2023-03-15 23:10:17', 1594285543804383234, '2023-03-15 23:10:17', NULL);
-INSERT INTO `campus_comment` (`comment_id`, `parent_id`, `one_level_id`, `user_id`, `to_user_id`, `content_id`, `co_content`, `ip`, `address`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (1643078885163933697, 0, -1, 1594285543804383234, -1, 1635923549986508801, '1', '127.0.0.1', '内网IP', b'0', '2023-04-04 10:31:48', 1594285543804383234, '2023-04-04 10:31:47', NULL);
-INSERT INTO `campus_comment` (`comment_id`, `parent_id`, `one_level_id`, `user_id`, `to_user_id`, `content_id`, `co_content`, `ip`, `address`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (1643640726665396227, 1643078885163933697, 1643078885163933697, 1594285543804383234, -1, 1635923549986508801, '2', '127.0.0.1', '内网IP', b'0', '2023-04-05 23:44:21', 1594285543804383234, '2023-04-05 23:44:21', NULL);
-INSERT INTO `campus_comment` (`comment_id`, `parent_id`, `one_level_id`, `user_id`, `to_user_id`, `content_id`, `co_content`, `ip`, `address`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (1643794139778953219, 1643640726665396227, 1643078885163933697, 1594285543804383234, 1594285543804383234, 1635923549986508801, '3', '127.0.0.1', '内网IP', b'0', '2023-04-06 09:53:58', 1594285543804383234, '2023-04-06 09:53:57', NULL);
-INSERT INTO `campus_comment` (`comment_id`, `parent_id`, `one_level_id`, `user_id`, `to_user_id`, `content_id`, `co_content`, `ip`, `address`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (1643794182640545794, 1643794139778953219, 1643078885163933697, 1594285543804383234, 1594285543804383234, 1635923549986508801, '4', '127.0.0.1', '内网IP', b'0', '2023-04-06 09:54:08', 1594285543804383234, '2023-04-06 09:54:08', NULL);
-INSERT INTO `campus_comment` (`comment_id`, `parent_id`, `one_level_id`, `user_id`, `to_user_id`, `content_id`, `co_content`, `ip`, `address`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (1643804468588101634, 1643794182640545794, 1643078885163933697, 1594285543804383234, 1594285543804383234, 1635923549986508801, '5', '127.0.0.1', '内网IP', b'0', '2023-04-06 10:35:00', 1594285543804383234, '2023-04-06 10:35:00', NULL);
 COMMIT;
 
 -- ----------------------------
@@ -116,7 +79,7 @@ CREATE TABLE `campus_content` (
   `content_id` bigint NOT NULL COMMENT '内容主键',
   `user_id` bigint DEFAULT NULL COMMENT '用户id',
   `category_id` bigint DEFAULT NULL COMMENT '类别id',
-  `content` varchar(700) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '发表的内容',
+  `content` varchar(700) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '发表的内容',
   `status` tinyint(1) DEFAULT NULL COMMENT '状态：0审核,1正常,2下架,3拒绝（审核不通过）',
   `type` tinyint(1) DEFAULT NULL COMMENT '类型：0文字,1图片,2视频',
   `file_count` int DEFAULT NULL COMMENT '文件数量',
@@ -136,15 +99,21 @@ CREATE TABLE `campus_content` (
 -- ----------------------------
 BEGIN;
 INSERT INTO `campus_content` (`content_id`, `user_id`, `category_id`, `content`, `status`, `type`, `file_count`, `love_count`, `is_anonymous`, `remark`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (1, 1, 1449212758636646402, '欢迎使用校园信息墙项目\n开源地址：https://github.com/oddfar/campus\n欢迎大家 Star 和 Fork 支持~', 1, 0, 0, 0, 1, NULL, b'0', '2022-03-05 10:55:04', NULL, '2023-02-26 14:26:33', 1);
-INSERT INTO `campus_content` (`content_id`, `user_id`, `category_id`, `content`, `status`, `type`, `file_count`, `love_count`, `is_anonymous`, `remark`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (2, 1, 1602336520042287105, 'hello world\nhello world\nhello world\nhello world', 1, 0, 1, 1, 0, NULL, b'0', '2022-12-13 00:01:47', NULL, '2023-02-26 14:34:19', 1);
-INSERT INTO `campus_content` (`content_id`, `user_id`, `category_id`, `content`, `status`, `type`, `file_count`, `love_count`, `is_anonymous`, `remark`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (3, 1, 1602336520042287105, '你好，welcome\n开源地址：https://github.com/oddfar/campus\n欢迎大家 Star 和 Fork 支持~', 1, 0, 1, 0, 0, NULL, b'0', '2022-12-13 00:01:47', NULL, '2023-02-26 14:33:07', 1);
-INSERT INTO `campus_content` (`content_id`, `user_id`, `category_id`, `content`, `status`, `type`, `file_count`, `love_count`, `is_anonymous`, `remark`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (1629730419490693121, 1594285543804383234, 1449212758636646402, '你好\n你好\n你好\n你好\n你好\n你好\n你好', 1, 0, 0, 1, 0, NULL, b'0', '2023-02-26 14:29:46', 1594285543804383234, '2023-02-26 14:34:57', 1);
-INSERT INTO `campus_content` (`content_id`, `user_id`, `category_id`, `content`, `status`, `type`, `file_count`, `love_count`, `is_anonymous`, `remark`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (1635923493036249089, 1594285543804383234, 1449212758636646402, '1232131', 1, 0, 0, 0, 0, NULL, b'0', '2023-03-15 16:38:49', 1594285543804383234, '2023-03-15 16:39:19', NULL);
-INSERT INTO `campus_content` (`content_id`, `user_id`, `category_id`, `content`, `status`, `type`, `file_count`, `love_count`, `is_anonymous`, `remark`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (1635923549986508801, 1594285543804383234, 1602336520042287105, '1111111', 1, 0, 0, 1, 0, NULL, b'0', '2023-03-15 16:39:03', 1594285543804383234, '2023-03-15 16:39:21', 1594285543804383234);
+INSERT INTO `campus_content` (`content_id`, `user_id`, `category_id`, `content`, `status`, `type`, `file_count`, `love_count`, `is_anonymous`, `remark`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (2, 1, 1602336520042287105, 'hello world\nhello world\nhello world\nhello world', 1, 0, 1, 1, 0, NULL, b'0', '2022-12-13 00:01:47', NULL, '2023-12-24 23:53:38', 1);
+INSERT INTO `campus_content` (`content_id`, `user_id`, `category_id`, `content`, `status`, `type`, `file_count`, `love_count`, `is_anonymous`, `remark`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (3, 1, 1602336520042287105, '你好，welcome\n开源地址：https://github.com/oddfar/campus\n欢迎大家 Star 和 Fork 支持~', 1, 0, 1, 0, 0, NULL, b'0', '2022-12-13 00:01:47', NULL, '2023-12-24 23:53:41', 1);
+INSERT INTO `campus_content` (`content_id`, `user_id`, `category_id`, `content`, `status`, `type`, `file_count`, `love_count`, `is_anonymous`, `remark`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (1629730419490693121, 1594285543804383234, 1449212758636646402, '你好\n你好\n你好\n你好\n你好\n你好\n你好', 2, 0, 0, 1, 0, NULL, b'1', '2023-02-26 14:29:46', 1594285543804383234, '2023-09-11 11:35:40', 1);
+INSERT INTO `campus_content` (`content_id`, `user_id`, `category_id`, `content`, `status`, `type`, `file_count`, `love_count`, `is_anonymous`, `remark`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (1635923493036249089, 1594285543804383234, 1449212758636646402, '1232131', 2, 0, 0, 0, 0, NULL, b'1', '2023-03-15 16:38:49', 1594285543804383234, '2023-09-11 11:35:42', 1);
+INSERT INTO `campus_content` (`content_id`, `user_id`, `category_id`, `content`, `status`, `type`, `file_count`, `love_count`, `is_anonymous`, `remark`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (1635923549986508801, 1594285543804383234, 1602336520042287105, '1111111', 2, 0, 0, 1, 0, NULL, b'1', '2023-03-15 16:39:03', 1594285543804383234, '2023-09-11 11:35:44', 1);
 INSERT INTO `campus_content` (`content_id`, `user_id`, `category_id`, `content`, `status`, `type`, `file_count`, `love_count`, `is_anonymous`, `remark`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (1644584732895301634, 1594285543804383234, 1449212758636646402, '123', 1, 0, 0, 0, 0, NULL, b'1', '2023-04-08 14:15:30', 1594285543804383234, '2023-04-08 22:26:13', NULL);
-INSERT INTO `campus_content` (`content_id`, `user_id`, `category_id`, `content`, `status`, `type`, `file_count`, `love_count`, `is_anonymous`, `remark`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (1644638851867873282, 1594285543804383234, 1449212758636646402, '1', 0, 0, 1, 0, 0, NULL, b'0', '2023-04-08 17:50:33', 1594285543804383234, '2023-04-08 23:43:28', NULL);
-INSERT INTO `campus_content` (`content_id`, `user_id`, `category_id`, `content`, `status`, `type`, `file_count`, `love_count`, `is_anonymous`, `remark`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (1644645933589467137, 1594285543804383234, 1449212758636646402, '2', 0, 0, 2, 0, 0, NULL, b'0', '2023-04-08 18:18:41', 1594285543804383234, '2023-04-08 23:43:29', NULL);
-INSERT INTO `campus_content` (`content_id`, `user_id`, `category_id`, `content`, `status`, `type`, `file_count`, `love_count`, `is_anonymous`, `remark`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (1644708092667236354, 1594285543804383234, 1449212758636646402, '3', 0, 0, 3, 0, 0, NULL, b'0', '2023-04-08 22:25:41', 1594285543804383234, '2023-04-08 23:43:31', NULL);
+INSERT INTO `campus_content` (`content_id`, `user_id`, `category_id`, `content`, `status`, `type`, `file_count`, `love_count`, `is_anonymous`, `remark`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (1644638851867873282, 1594285543804383234, 1449212758636646402, '1', 2, 1, 1, 0, 0, NULL, b'1', '2023-04-08 17:50:33', 1594285543804383234, '2023-09-11 11:35:01', 1);
+INSERT INTO `campus_content` (`content_id`, `user_id`, `category_id`, `content`, `status`, `type`, `file_count`, `love_count`, `is_anonymous`, `remark`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (1644645933589467137, 1594285543804383234, 1449212758636646402, '2', 2, 1, 2, 0, 0, NULL, b'1', '2023-04-08 18:18:41', 1594285543804383234, '2023-09-11 11:35:03', 1);
+INSERT INTO `campus_content` (`content_id`, `user_id`, `category_id`, `content`, `status`, `type`, `file_count`, `love_count`, `is_anonymous`, `remark`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (1644708092667236354, 1594285543804383234, 1449212758636646402, '3', 2, 1, 3, 0, 0, NULL, b'1', '2023-04-08 22:25:41', 1594285543804383234, '2023-09-11 11:35:04', 1);
+INSERT INTO `campus_content` (`content_id`, `user_id`, `category_id`, `content`, `status`, `type`, `file_count`, `love_count`, `is_anonymous`, `remark`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (1645955280757866497, 1, 1602336520042287105, '把回忆拼好给你', 1, 2, 1, 2, 0, NULL, b'1', '2023-04-12 09:01:34', 1, '2024-01-07 12:05:07', 1);
+INSERT INTO `campus_content` (`content_id`, `user_id`, `category_id`, `content`, `status`, `type`, `file_count`, `love_count`, `is_anonymous`, `remark`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (1645961851969748993, 1, 1602336520042287105, '柯基', 1, 2, 1, 1, 0, NULL, b'1', '2023-04-12 09:27:41', 1, '2024-01-07 12:05:09', 1594285543804383234);
+INSERT INTO `campus_content` (`content_id`, `user_id`, `category_id`, `content`, `status`, `type`, `file_count`, `love_count`, `is_anonymous`, `remark`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (1656224490817863682, 1, 1449212758636646402, '1', 1, 2, 1, 0, 0, NULL, b'1', '2023-05-10 17:07:44', 1, '2024-01-07 12:05:12', 1);
+INSERT INTO `campus_content` (`content_id`, `user_id`, `category_id`, `content`, `status`, `type`, `file_count`, `love_count`, `is_anonymous`, `remark`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (1674977777075437569, 2, 1602336520042287105, '欢迎大家报考山河大学，我在山河大等你！', 1, 1, 3, 888, 0, NULL, b'1', '2023-07-01 11:26:36', 2, '2024-01-07 12:05:14', 1);
+INSERT INTO `campus_content` (`content_id`, `user_id`, `category_id`, `content`, `status`, `type`, `file_count`, `love_count`, `is_anonymous`, `remark`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (1674980529281253378, 2, 1602336520042287105, '山河大学@柴柴写字', 2, 1, 1, 666, 0, NULL, b'1', '2023-07-01 11:17:32', 2, '2024-01-07 12:04:59', 1);
+INSERT INTO `campus_content` (`content_id`, `user_id`, `category_id`, `content`, `status`, `type`, `file_count`, `love_count`, `is_anonymous`, `remark`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (1674988784673964034, 2, 1602336520042287105, '山河大学记录片传奇@不张常', 2, 2, 1, 999, 0, NULL, b'1', '2023-07-01 11:50:21', 2, '2024-01-07 12:04:57', 1);
 COMMIT;
 
 -- ----------------------------
@@ -162,9 +131,13 @@ CREATE TABLE `campus_content_love` (
 -- Records of campus_content_love
 -- ----------------------------
 BEGIN;
+INSERT INTO `campus_content_love` (`user_id`, `content_id`, `create_time`) VALUES (2, 1645955280757866497, '2023-12-25 00:20:26');
+INSERT INTO `campus_content_love` (`user_id`, `content_id`, `create_time`) VALUES (2, 1674977777075437569, '2023-12-24 23:58:59');
 INSERT INTO `campus_content_love` (`user_id`, `content_id`, `create_time`) VALUES (1594285543804383234, 2, '2023-02-26 14:33:17');
 INSERT INTO `campus_content_love` (`user_id`, `content_id`, `create_time`) VALUES (1594285543804383234, 1629730419490693121, '2023-03-29 16:29:37');
 INSERT INTO `campus_content_love` (`user_id`, `content_id`, `create_time`) VALUES (1594285543804383234, 1635923549986508801, '2023-03-29 16:28:22');
+INSERT INTO `campus_content_love` (`user_id`, `content_id`, `create_time`) VALUES (1594285543804383234, 1645955280757866497, '2023-05-09 09:09:29');
+INSERT INTO `campus_content_love` (`user_id`, `content_id`, `create_time`) VALUES (1594285543804383234, 1645961851969748993, '2023-05-09 09:09:28');
 COMMIT;
 
 -- ----------------------------
@@ -175,7 +148,7 @@ CREATE TABLE `campus_content_tag` (
   `content_id` bigint NOT NULL COMMENT '内容id',
   `tag_id` bigint NOT NULL COMMENT '标签id',
   PRIMARY KEY (`content_id`,`tag_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- ----------------------------
 -- Records of campus_content_tag
@@ -205,12 +178,6 @@ CREATE TABLE `campus_file` (
 -- Records of campus_file
 -- ----------------------------
 BEGIN;
-INSERT INTO `campus_file` (`file_id`, `content_id`, `user_id`, `url`, `create_time`) VALUES (1644638832884453378, 1644638851867873282, 1594285543804383234, '/profile/CampusFile/2023/04/08/cwrrlPaIykXB832c218354cd9fa1a558ca6c023c8abd_20230408175028A003.png', '2023-04-08 17:50:32');
-INSERT INTO `campus_file` (`file_id`, `content_id`, `user_id`, `url`, `create_time`) VALUES (1644645888458756098, 1644645933589467137, 1594285543804383234, '/profile/CampusFile/2023/04/08/sfVlFJlCHq7Le04f4dbfb2306d5783d9ab6247d74fbb_20230408181830A004.jpg', '2023-04-08 18:18:41');
-INSERT INTO `campus_file` (`file_id`, `content_id`, `user_id`, `url`, `create_time`) VALUES (1644645910021672962, 1644645933589467137, 1594285543804383234, '/profile/CampusFile/2023/04/08/c7Pex0d3zp3L832c218354cd9fa1a558ca6c023c8abd_20230408181835A005.png', '2023-04-08 18:18:41');
-INSERT INTO `campus_file` (`file_id`, `content_id`, `user_id`, `url`, `create_time`) VALUES (1644708042641772545, 1644708092667236354, 1594285543804383234, '/profile/CampusFile/2023/04/08/0Voe3dAhPjRSe04f4dbfb2306d5783d9ab6247d74fbb_20230408222529A006.jpg', '2023-04-08 22:25:41');
-INSERT INTO `campus_file` (`file_id`, `content_id`, `user_id`, `url`, `create_time`) VALUES (1644708059884556290, 1644708092667236354, 1594285543804383234, '/profile/CampusFile/2023/04/08/stJD3vUJf6D9fe8240824c1a162268048e10b12f239c_20230408222533A007.jpg', '2023-04-08 22:25:41');
-INSERT INTO `campus_file` (`file_id`, `content_id`, `user_id`, `url`, `create_time`) VALUES (1644708077852954625, 1644708092667236354, 1594285543804383234, '/profile/CampusFile/2023/04/08/nSdnns1irWyc832c218354cd9fa1a558ca6c023c8abd_20230408222537A008.png', '2023-04-08 22:25:41');
 COMMIT;
 
 -- ----------------------------
@@ -248,14 +215,8 @@ CREATE TABLE `social_user` (
   `uuid` varchar(255) DEFAULT NULL COMMENT '第三方系统的唯一ID',
   `source` varchar(255) DEFAULT NULL COMMENT '第三方用户来源',
   PRIMARY KEY (`social_user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1638895499511939074 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='社会化用户表\n';
+) ENGINE=InnoDB AUTO_INCREMENT=1738958687858704386 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='社会化用户表\n';
 
--- ----------------------------
--- Records of social_user
--- ----------------------------
-BEGIN;
-INSERT INTO `social_user` (`social_user_id`, `uuid`, `source`) VALUES (1638895499511939073, 'okhHa4h4tIoygJFw3MV196_iTTck', 'WXAMP');
-COMMIT;
 
 -- ----------------------------
 -- Table structure for social_user_auth
@@ -264,14 +225,8 @@ DROP TABLE IF EXISTS `social_user_auth`;
 CREATE TABLE `social_user_auth` (
   `user_id` bigint DEFAULT NULL,
   `social_user_id` bigint DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
--- ----------------------------
--- Records of social_user_auth
--- ----------------------------
-BEGIN;
-INSERT INTO `social_user_auth` (`user_id`, `social_user_id`) VALUES (1594285543804383234, 1638895499511939073);
-COMMIT;
 
 -- ----------------------------
 -- Table structure for sys_config
@@ -314,13 +269,14 @@ INSERT INTO `sys_config` (`config_id`, `config_name`, `config_key`, `config_valu
 INSERT INTO `sys_config` (`config_id`, `config_name`, `config_key`, `config_value`, `config_type`, `group_code`, `remark`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (117, '邮箱发送时的用户名', 'sys.email.name', '致远', 'Y', 'mail_config', NULL, b'0', '2022-01-19 11:10:47', NULL, '2022-01-24 11:28:19', NULL);
 INSERT INTO `sys_config` (`config_id`, `config_name`, `config_key`, `config_value`, `config_type`, `group_code`, `remark`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (202, '用户默认头像', 'sys.user.default.avatar', 'https://img0.baidu.com/it/u=1183896628,1403534286&fm=253&fmt=auto&app=138&f=PNG', 'Y', 'sys_config', NULL, b'0', '2022-02-08 11:35:31', NULL, '2022-02-08 11:40:15', 1);
 INSERT INTO `sys_config` (`config_id`, `config_name`, `config_key`, `config_value`, `config_type`, `group_code`, `remark`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (206, '用户管理-账号初始密码', 'sys.user.initPassword', '123456', 'Y', 'sys_config', '初始化密码 123456', b'0', '2022-11-09 01:41:52', 1, '2022-11-09 15:42:09', NULL);
+INSERT INTO `sys_config` (`config_id`, `config_name`, `config_key`, `config_value`, `config_type`, `group_code`, `remark`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (220, '全局日志记录', 'sys.log.global.flag', 'true', 'Y', 'sys_config', '全局日志记录，true则所有请求都将记录日志', b'0', '2023-06-07 21:36:00', 1, '2023-06-08 14:44:00', 1);
 INSERT INTO `sys_config` (`config_id`, `config_name`, `config_key`, `config_value`, `config_type`, `group_code`, `remark`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (300, '验证码类型', 'sys.login.captchaType', 'math', 'Y', 'sys_config', 'math 数组计算 char 字符验证', b'0', '2022-11-10 09:32:40', 1, '2022-11-30 12:14:30', NULL);
 INSERT INTO `sys_config` (`config_id`, `config_name`, `config_key`, `config_value`, `config_type`, `group_code`, `remark`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (301, '账号自助-验证码开关', 'sys.account.captchaEnabled', 'true', 'Y', 'sys_config', '是否开启验证码功能（true开启，false关闭）', b'0', '2023-02-01 21:48:05', 1, '2023-02-01 21:48:34', NULL);
 INSERT INTO `sys_config` (`config_id`, `config_name`, `config_key`, `config_value`, `config_type`, `group_code`, `remark`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (302, '账号自助-是否开启用户注册功能', 'sys.account.registerUser', 'true', 'Y', 'sys_config', '是否开启注册用户功能（true开启，false关闭）', b'0', '2023-02-01 21:47:39', 1, '2023-02-01 21:48:31', NULL);
 INSERT INTO `sys_config` (`config_id`, `config_name`, `config_key`, `config_value`, `config_type`, `group_code`, `remark`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (1621419076555640833, '绑定邮箱模板', 'campus.mail.bindTemplate', '<h3>您好，#{[userName]}</h3><br />请在#{[expiration]}分内点击以下链接完成邮箱验证<br /><a href=\"#{[url]}\">#{[url]}</a>', 'Y', 'campus_config', '#{[userName]}用户，#{[url]}邮箱验证的链接，#{[expiration]}，有效期', b'0', '2023-02-03 16:03:27', 1, '2023-02-03 16:03:27', 1);
 INSERT INTO `sys_config` (`config_id`, `config_name`, `config_key`, `config_value`, `config_type`, `group_code`, `remark`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (1621419076555640834, '用户匿名头像', 'campus.user.anonymous.image', 'https://gcore.jsdelivr.net/gh/oddfar/static/campus/image/anonymous.jpeg', 'Y', 'campus_config', NULL, b'0', '2022-02-08 11:36:36', NULL, '2023-02-21 08:33:07', 1);
-INSERT INTO `sys_config` (`config_id`, `config_name`, `config_key`, `config_value`, `config_type`, `group_code`, `remark`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (1637978152848654338, '微信小程序APPID', 'campus.wxmp.appid', 'xxxxxx', 'Y', 'campus_config', NULL, b'0', '2023-03-21 08:43:18', 1, '2023-04-08 23:46:37', 1);
-INSERT INTO `sys_config` (`config_id`, `config_name`, `config_key`, `config_value`, `config_type`, `group_code`, `remark`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (1637978359153885186, '微信小程序SECRET', 'campus.wxmp.secret', 'xxxxxxxx', 'Y', 'campus_config', NULL, b'0', '2023-03-21 08:44:08', 1, '2023-04-08 23:46:41', 1);
+INSERT INTO `sys_config` (`config_id`, `config_name`, `config_key`, `config_value`, `config_type`, `group_code`, `remark`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (1637978152848654338, '微信小程序APPID', 'campus.wxmp.appid', 'wx4957f5c650534e63', 'Y', 'campus_config', NULL, b'0', '2023-03-21 08:43:18', 1, '2023-04-08 23:50:47', 1);
+INSERT INTO `sys_config` (`config_id`, `config_name`, `config_key`, `config_value`, `config_type`, `group_code`, `remark`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (1637978359153885186, '微信小程序SECRET', 'campus.wxmp.secret', '2a6993637dbfac2724fe2b2a7dc9e940', 'Y', 'campus_config', NULL, b'0', '2023-03-21 08:44:08', 1, '2023-04-08 23:50:52', 1);
 COMMIT;
 
 -- ----------------------------
@@ -344,7 +300,7 @@ CREATE TABLE `sys_dict_data` (
   `update_user` bigint DEFAULT NULL COMMENT '更新者',
   `del_flag` bit(1) DEFAULT b'0' COMMENT '逻辑删除(1:已删除，0:未删除)',
   PRIMARY KEY (`dict_code`)
-) ENGINE=InnoDB AUTO_INCREMENT=1621418087714918402 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='字典数据表';
+) ENGINE=InnoDB AUTO_INCREMENT=1621418087714918402 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='字典数据表';
 
 -- ----------------------------
 -- Records of sys_dict_data
@@ -382,7 +338,7 @@ CREATE TABLE `sys_dict_type` (
   `dict_name` varchar(100) DEFAULT '' COMMENT '字典名称',
   `dict_type` varchar(100) DEFAULT '' COMMENT '字典类型',
   `status` char(1) DEFAULT '0' COMMENT '状态（0正常 1停用）',
-  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '备注',
+  `remark` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '备注',
   `create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `create_user` bigint DEFAULT NULL COMMENT '创建者',
   `update_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
@@ -390,7 +346,7 @@ CREATE TABLE `sys_dict_type` (
   `del_flag` bit(1) DEFAULT b'0' COMMENT '逻辑删除(1:已删除，0:未删除)',
   PRIMARY KEY (`dict_id`),
   UNIQUE KEY `dict_type` (`dict_type`)
-) ENGINE=InnoDB AUTO_INCREMENT=1607372974271246338 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='字典类型表';
+) ENGINE=InnoDB AUTO_INCREMENT=1607372974271246338 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='字典类型表';
 
 -- ----------------------------
 -- Records of sys_dict_type
@@ -404,6 +360,58 @@ INSERT INTO `sys_dict_type` (`dict_id`, `dict_name`, `dict_type`, `status`, `rem
 INSERT INTO `sys_dict_type` (`dict_id`, `dict_name`, `dict_type`, `status`, `remark`, `create_time`, `create_user`, `update_time`, `update_user`, `del_flag`) VALUES (1597931685624774657, '校园墙内容状态', 'campus_content_status', '0', '校园墙内容状态', '2022-11-30 20:32:57', 1, '2022-11-30 20:32:56', NULL, b'0');
 INSERT INTO `sys_dict_type` (`dict_id`, `dict_name`, `dict_type`, `status`, `remark`, `create_time`, `create_user`, `update_time`, `update_user`, `del_flag`) VALUES (1597932303005351938, '是否匿名', 'campus_anonymous', '0', '校园信息墙是否匿名', '2022-11-30 20:35:24', 1, '2022-11-30 20:35:23', NULL, b'0');
 INSERT INTO `sys_dict_type` (`dict_id`, `dict_name`, `dict_type`, `status`, `remark`, `create_time`, `create_user`, `update_time`, `update_user`, `del_flag`) VALUES (1599392072043900930, '校园内类型', 'campus_content_type', '0', '0文字,1图片,2视频', '2022-12-04 21:16:00', 1, '2022-12-04 21:15:59', NULL, b'0');
+COMMIT;
+
+-- ----------------------------
+-- Table structure for sys_log_login
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_log_login`;
+CREATE TABLE `sys_log_login` (
+  `info_id` bigint NOT NULL AUTO_INCREMENT COMMENT '访问ID',
+  `user_id` bigint DEFAULT NULL COMMENT '登录成功的用户id\n',
+  `user_name` varchar(255) DEFAULT NULL COMMENT '用户账号',
+  `ipaddr` varchar(128) DEFAULT '' COMMENT '登录IP地址',
+  `login_location` varchar(255) DEFAULT '' COMMENT '登录地点',
+  `browser` varchar(50) DEFAULT '' COMMENT '浏览器类型',
+  `os` varchar(50) DEFAULT '' COMMENT '操作系统',
+  `status` char(1) DEFAULT '0' COMMENT '登录状态（0成功 1失败）',
+  `msg` varchar(255) DEFAULT '' COMMENT '提示消息',
+  `login_time` datetime DEFAULT NULL COMMENT '访问时间',
+  PRIMARY KEY (`info_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1743181335406579715 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='系统访问记录';
+
+-- ----------------------------
+-- Records of sys_log_login
+-- ----------------------------
+BEGIN;
+COMMIT;
+
+-- ----------------------------
+-- Table structure for sys_log_oper
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_log_oper`;
+CREATE TABLE `sys_log_oper` (
+  `oper_id` bigint NOT NULL AUTO_INCREMENT COMMENT '日志主键',
+  `app_name` varchar(255) DEFAULT NULL COMMENT '服务名称，一般为spring.application.name',
+  `log_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '' COMMENT '日志名称',
+  `log_content` varchar(255) DEFAULT '0' COMMENT '日志记录内容',
+  `method` varchar(100) DEFAULT '' COMMENT '方法名称',
+  `request_method` varchar(10) DEFAULT '' COMMENT '请求方式',
+  `oper_user_id` bigint DEFAULT NULL COMMENT '操作人员user_id',
+  `oper_url` varchar(255) DEFAULT '' COMMENT '请求URL',
+  `oper_ip` varchar(128) DEFAULT '' COMMENT '主机地址',
+  `oper_param` varchar(2000) DEFAULT '' COMMENT '请求参数',
+  `json_result` varchar(2000) DEFAULT '' COMMENT '返回参数',
+  `status` int DEFAULT '0' COMMENT '操作状态（0正常 1异常）',
+  `error_msg` varchar(2000) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '错误消息',
+  `oper_time` datetime DEFAULT NULL COMMENT '操作时间',
+  PRIMARY KEY (`oper_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1743846829323194370 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='操作日志记录';
+
+-- ----------------------------
+-- Records of sys_log_oper
+-- ----------------------------
+BEGIN;
 COMMIT;
 
 -- ----------------------------
@@ -425,14 +433,14 @@ CREATE TABLE `sys_menu` (
   `status` char(1) DEFAULT '0' COMMENT '菜单状态（0正常 1停用）',
   `perms` varchar(100) DEFAULT NULL COMMENT '权限标识',
   `icon` varchar(100) DEFAULT '#' COMMENT '菜单图标',
-  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT '备注',
+  `remark` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '' COMMENT '备注',
   `del_flag` bit(1) DEFAULT NULL COMMENT '逻辑删除(1:已删除，0:未删除)',
   `create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_user` bigint DEFAULT NULL COMMENT '更新者',
   `update_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
   `create_user` bigint DEFAULT NULL COMMENT '创建者',
   PRIMARY KEY (`menu_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1597931148678365187 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='菜单权限表';
+) ENGINE=InnoDB AUTO_INCREMENT=1597931148678365187 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='菜单权限表';
 
 -- ----------------------------
 -- Records of sys_menu
@@ -536,16 +544,16 @@ COMMIT;
 DROP TABLE IF EXISTS `sys_resource`;
 CREATE TABLE `sys_resource` (
   `resource_id` bigint NOT NULL COMMENT '资源id',
-  `app_code` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '应用编码',
-  `resource_code` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '资源编码',
-  `resource_name` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '资源名称',
-  `class_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '类名称',
-  `method_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '方法名称',
-  `modular_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '资源模块名称，一般为控制器名称',
-  `url` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '资源url',
-  `http_method` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'http请求方法',
+  `app_code` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '应用编码',
+  `resource_code` varchar(300) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '资源编码',
+  `resource_name` varchar(300) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '资源名称',
+  `class_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '类名称',
+  `method_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '方法名称',
+  `modular_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '资源模块名称，一般为控制器名称',
+  `url` varchar(300) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '资源url',
+  `http_method` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT 'http请求方法',
   `resource_biz_type` tinyint DEFAULT '1' COMMENT '资源的业务类型：1-业务类，2-系统类',
-  `required_permission_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '是否需要鉴权：Y-是，N-否',
+  `required_permission_flag` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '是否需要鉴权：Y-是，N-否',
   `del_flag` bit(1) DEFAULT b'0' COMMENT '删除标志（0代表存在 1代表删除）',
   `create_user` bigint DEFAULT NULL COMMENT '创建人',
   `create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
@@ -553,7 +561,7 @@ CREATE TABLE `sys_resource` (
   `update_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`resource_id`) USING BTREE,
   KEY `RESOURCE_CODE_URL` (`resource_code`,`url`) USING BTREE COMMENT '资源code和url的联合索引'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC COMMENT='需要认证的接口资源controller';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci ROW_FORMAT=DYNAMIC COMMENT='需要认证的接口资源controller';
 
 -- ----------------------------
 -- Records of sys_resource
@@ -572,14 +580,14 @@ CREATE TABLE `sys_role` (
   `role_sort` int NOT NULL COMMENT '显示顺序',
   `menu_check_strictly` tinyint(1) DEFAULT '1' COMMENT '菜单树选择项是否关联显示',
   `status` char(1) NOT NULL COMMENT '角色状态（0正常 1停用）',
-  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '备注',
+  `remark` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '备注',
   `del_flag` bit(1) DEFAULT b'0' COMMENT '删除标志（0代表存在 2代表删除）',
   `create_user` bigint DEFAULT NULL COMMENT '创建者',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `update_user` bigint DEFAULT NULL COMMENT '更新者',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`role_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1628997651572027395 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='角色信息表';
+) ENGINE=InnoDB AUTO_INCREMENT=1628997651572027395 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='角色信息表';
 
 -- ----------------------------
 -- Records of sys_role
@@ -600,7 +608,7 @@ CREATE TABLE `sys_role_menu` (
   `role_id` bigint NOT NULL COMMENT '角色ID',
   `menu_id` bigint NOT NULL COMMENT '菜单ID',
   PRIMARY KEY (`role_id`,`menu_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='角色和菜单关联表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='角色和菜单关联表';
 
 -- ----------------------------
 -- Records of sys_role_menu
@@ -637,15 +645,16 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_role_resource`;
 CREATE TABLE `sys_role_resource` (
-  `resource_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '资源编码',
+  `resource_code` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '资源编码',
   `role_id` bigint NOT NULL COMMENT '角色id',
   PRIMARY KEY (`role_id`,`resource_code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC COMMENT='角色资源关联';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci ROW_FORMAT=DYNAMIC COMMENT='角色资源关联';
 
 -- ----------------------------
 -- Records of sys_role_resource
 -- ----------------------------
 BEGIN;
+INSERT INTO `sys_role_resource` (`resource_code`, `role_id`) VALUES ('campus.comment_info.del_own_comment', 1594285449147330561);
 INSERT INTO `sys_role_resource` (`resource_code`, `role_id`) VALUES ('campus.comment_info.get_own_comment_list', 1594285449147330561);
 INSERT INTO `sys_role_resource` (`resource_code`, `role_id`) VALUES ('campus.comment_info.to_comment', 1594285449147330561);
 INSERT INTO `sys_role_resource` (`resource_code`, `role_id`) VALUES ('campus.content_info.del_content', 1594285449147330561);
@@ -682,22 +691,21 @@ CREATE TABLE `sys_user` (
   `status` char(1) DEFAULT '0' COMMENT '帐号状态（0正常 1停用）',
   `login_ip` varchar(128) DEFAULT '' COMMENT '最后登录IP',
   `login_date` datetime DEFAULT NULL COMMENT '最后登录时间',
-  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '备注',
+  `remark` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '备注',
   `create_user` bigint DEFAULT NULL COMMENT '创建者',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `update_user` bigint DEFAULT NULL COMMENT '更新者',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `del_flag` bit(1) DEFAULT NULL COMMENT '逻辑删除(1:已删除，0:未删除)',
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1638913642586238979 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='用户信息表';
+) ENGINE=InnoDB AUTO_INCREMENT=1638913642586238979 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='用户信息表';
 
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
 BEGIN;
-INSERT INTO `sys_user` (`user_id`, `user_name`, `nick_name`, `user_type`, `email`, `phonenumber`, `sex`, `avatar`, `password`, `status`, `login_ip`, `login_date`, `remark`, `create_user`, `create_time`, `update_user`, `update_time`, `del_flag`) VALUES (1, 'admin', 'admin', '00', 'oddfar@163.com', '15888888888', '0', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '127.0.0.1', '2023-04-08 17:34:56', '管理员', 0, '2022-10-05 15:28:43', 1, '2023-04-08 17:34:56', b'0');
-INSERT INTO `sys_user` (`user_id`, `user_name`, `nick_name`, `user_type`, `email`, `phonenumber`, `sex`, `avatar`, `password`, `status`, `login_ip`, `login_date`, `remark`, `create_user`, `create_time`, `update_user`, `update_time`, `del_flag`) VALUES (2, 'zhiyuan', '致远', '00', 'a_zhiyuan@163.com', '15666666666', '1', '', '$2a$10$LtM4R7ovl31aBeT8yLrb.uoMFjU4TisUHHSZk4/PsLVkkyZT.Fgf.', '0', '127.0.0.1', '2023-01-11 23:04:36', '测试', 0, '2022-10-05 15:28:43', 2, '2023-01-11 23:04:36', b'0');
-INSERT INTO `sys_user` (`user_id`, `user_name`, `nick_name`, `user_type`, `email`, `phonenumber`, `sex`, `avatar`, `password`, `status`, `login_ip`, `login_date`, `remark`, `create_user`, `create_time`, `update_user`, `update_time`, `del_flag`) VALUES (1594285543804383234, 'test', '测试账号', '00', '', '', '0', '', '$2a$10$jEsSgqNclOA.0Vj4xuKIdeXLC0D9trS1aAoZBLA6e/Z7JSDmU67HW', '0', '127.0.0.1', '2023-04-08 17:49:38', '测试', 1, '2022-11-20 19:04:29', NULL, '2023-04-08 17:49:38', b'0');
+INSERT INTO `sys_user` (`user_id`, `user_name`, `nick_name`, `user_type`, `email`, `phonenumber`, `sex`, `avatar`, `password`, `status`, `login_ip`, `login_date`, `remark`, `create_user`, `create_time`, `update_user`, `update_time`, `del_flag`) VALUES (1, 'admin', 'admin', '00', 'oddfar@163.com', '15888888888', '0', '/profile/avatar/2023/05/10/blob_20230510172840A002.jpeg', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '127.0.0.1', '2024-01-07 11:58:57', '管理员', 0, '2022-10-05 15:28:43', 1, '2024-01-07 11:58:57', b'0');
+INSERT INTO `sys_user` (`user_id`, `user_name`, `nick_name`, `user_type`, `email`, `phonenumber`, `sex`, `avatar`, `password`, `status`, `login_ip`, `login_date`, `remark`, `create_user`, `create_time`, `update_user`, `update_time`, `del_flag`) VALUES (2, 'zhiyuan', '致远', '00', 'a_zhiyuan@163.com', '15666666666', '1', '/profile/avatar/2023/07/01/blob_20230701101949A001.jpeg', '$2a$10$CgOz7rzHEqUDjPO9h6N0Y.ecwB.1HpIXx4UC9DwZU.NY9zyMJ/meS', '0', '127.0.0.1', '2023-12-25 00:23:54', '测试', 0, '2022-10-05 15:28:43', NULL, '2023-12-25 00:23:54', b'0');
 COMMIT;
 
 -- ----------------------------
@@ -708,7 +716,7 @@ CREATE TABLE `sys_user_role` (
   `user_id` bigint NOT NULL COMMENT '用户ID',
   `role_id` bigint NOT NULL COMMENT '角色ID',
   PRIMARY KEY (`user_id`,`role_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='用户和角色关联表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='用户和角色关联表';
 
 -- ----------------------------
 -- Records of sys_user_role
@@ -716,9 +724,7 @@ CREATE TABLE `sys_user_role` (
 BEGIN;
 INSERT INTO `sys_user_role` (`user_id`, `role_id`) VALUES (1, 1);
 INSERT INTO `sys_user_role` (`user_id`, `role_id`) VALUES (2, 2);
-INSERT INTO `sys_user_role` (`user_id`, `role_id`) VALUES (1594285543804383234, 1594285449147330561);
-INSERT INTO `sys_user_role` (`user_id`, `role_id`) VALUES (1638895499486773250, 1594285449147330561);
-INSERT INTO `sys_user_role` (`user_id`, `role_id`) VALUES (1638913642586238978, 1628997165540274178);
+INSERT INTO `sys_user_role` (`user_id`, `role_id`) VALUES (2, 1594285449147330561);
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;
